@@ -1,3 +1,8 @@
 body{background: #f4f4f4;}
 
 .header{position: fixed; top: 0; left: 0; right: 0; height: 4em; background: #fff; /*background-image: linear-gradient(20deg, #d6e3fe, #ebe5fa,#ebe5fa,#ebe5fa,#f8d7db,#f8c1e2);*/} 
+.header > .container{ margin: 0 auto;}
+
+@media all and (min-width:1025px) {
+    .header > .container{ width: 64em;}
+}
