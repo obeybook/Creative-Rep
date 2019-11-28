@@ -7,12 +7,13 @@ body{background: #f4f4f4;}
 .container{ margin: 0 auto; }
 
 .box-grid-layout {position: relative; margin: 0.625em 0; padding: 0; display: none;}
-.box-grid-layout .box { width: 13.125em; }
 .box-grid-layout .box:hover{ opacity: 0.7;}
-/* .box-slide-layout .box:not(:last-child) { } */
+/* 리사이즈 할 때, 공백이 생기는 에러 */
+/* .box-grid-layout.animated .box { -webkit-transition: all 0.1s ease-out; -moz-transition: all 0.1s ease-out; -o-transition: all 0.1s ease-out; transition: all 0.1s ease-out; } */
+/************************************/
 
 
-@media all and (min-width:1260px) {
-    .header > .container{ width: 76em; }
-    .container{ width: 76em; }
+@media all and (min-width:1024px) {
+    .header > .container{ width: 100%; }
+    /* .container{ width: 76em; } */
 }

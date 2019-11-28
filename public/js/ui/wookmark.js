@@ -39,7 +39,7 @@
     onLayoutChanged: undefined,
     placeholderClass: 'wookmark-placeholder',
     possibleFilters: [],
-    resizeDelay: 50,
+    resizeDelay: 0,
     verticalOffset: undefined
   };
 
