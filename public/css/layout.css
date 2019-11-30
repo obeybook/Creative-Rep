@@ -8,6 +8,12 @@ body{background: #f4f4f4;}
 
 .box-grid-layout {position: relative; margin: 0.625em 0; padding: 0; display: none;}
 .box-grid-layout .box:hover{ opacity: 0.7;}
+.box-grid-layout .box-text{height: 317px;;}
+.box-grid-layout .box-text p{height: 100%;
+    background-image: linear-gradient(45deg, #ff548e, #e54cff,#7c90ff,#41abff); /*background-image: linear-gradient(45deg, #009688, #4CAF50,#8BC34A,#CDDC39);*/
+    color: #f4f4f4;
+    font-weight: 900;
+    font-size: 4em;}
 /* 리사이즈 할 때, 공백이 생기는 에러 */
 /* .box-grid-layout.animated .box { -webkit-transition: all 0.1s ease-out; -moz-transition: all 0.1s ease-out; -o-transition: all 0.1s ease-out; transition: all 0.1s ease-out; } */
 /************************************/
