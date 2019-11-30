@@ -2,6 +2,10 @@ body{background: #f4f4f4;}
 
 .header{position: fixed; top: 0; left: 0; right: 0; height: 4em; background: #fff; /*background-image: linear-gradient(20deg, #d6e3fe, #ebe5fa,#ebe5fa,#ebe5fa,#f8d7db,#f8c1e2);*/} 
 .header > .container{ margin: 0 auto;}
+.header .header-row{ height: 4em;  -ms-flex-align: center !important; align-items: center !important;}
+.header span:not(:last-child){ margin-right: 12px; }
+.header-user i{ color: #bdbdbd;}
+.header-user i:before{ font-size: 1.2em;}
 
 .content{ margin-top: 4em; }
 .container{ margin: 0 auto; }
