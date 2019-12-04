@@ -18,6 +18,7 @@ body{background: #f4f4f4;}
     color: #f4f4f4;
     font-weight: 900;
     font-size: 4em;}
+    .box img{ width: 317px;}
 /* 리사이즈 할 때, 공백이 생기는 에러 */
 /* .box-grid-layout.animated .box { -webkit-transition: all 0.1s ease-out; -moz-transition: all 0.1s ease-out; -o-transition: all 0.1s ease-out; transition: all 0.1s ease-out; } */
 /************************************/
