@@ -2,6 +2,7 @@ doctype html
 html
     head
         include set/import.pug
+        script(src='/js/ui/wookmark.js')
     body
         block header
         include set/header.pug
@@ -10,11 +11,17 @@ html
         .content
             .container
                 .box-grid-layout.animated#wookmark1
+                    - var l = 0;
+                    - var i = title.length;
+                    while l < i
+                        .box
+                            p 
+                                a(href='create') #{title[l].text}
                     .box
                         img(src='/img/sample/castle.jpg')
                     .box.box-text
                         p 
-                            a(href='create') Creative Images
+                            a(href='create') 
                     .box
                         img(src='/img/sample/kyotonight.jpg')
                     .box
@@ -40,7 +47,7 @@ html
                     .box
                         img(src='/img/sample/sample6.jpg')
 
-    script(src='/js/ui/wookmark.js')
+    
     script.
         $(document).ready(function(){
             function getWindowWidth() {
