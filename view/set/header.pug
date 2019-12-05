@@ -7,7 +7,17 @@
                 .row
                     .col-10
                     .header-user.col-2
-                        span.header-alarm
+                        .header-alarm.header-func
                             i.mdi.mdi-bell
-                        span.header-user-info
+                        .header-user-info.header-func
                             i.mdi.mdi-account
+                            .temp
+script.
+    $(".header-user-info").on("click", function(){
+        if( $(".temp").hasClass("open") == false){
+            $(".temp").fadeIn().addClass("open");
+        } else{
+            $(".temp").fadeOut().removeClass("open")
+        }
+        
+    });

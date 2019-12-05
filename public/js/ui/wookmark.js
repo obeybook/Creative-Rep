@@ -32,14 +32,14 @@
     inactiveClass: 'wookmark-inactive',
     itemSelector: undefined,
     itemWidth: 0,
-    fillEmptySpace: false,
+    fillEmptySpace: true,
     flexibleWidth: 0,
     offset: 5,
     outerOffset: 0,
     onLayoutChanged: undefined,
     placeholderClass: 'wookmark-placeholder',
     possibleFilters: [],
-    resizeDelay: 0,
+    resizeDelay: 30,
     verticalOffset: undefined
   };
 
