@@ -2,7 +2,7 @@ doctype html
 html
     head
         include set/import.pug
-        script(src='/js/ui/wookmark.js')
+        script(src='/js/ui/gridify.js')
     body
         block header
         include set/header.pug
@@ -10,50 +10,35 @@ html
         block main-content 
         .content
             .container
-                .box-grid-layout.animated#wookmark1
-                    for item in title
-                        .box.box-text
-                            p= item.text
-                            //- p #{title[item].text}
-                    .box
+                .box-grid-layout.grid
+                    .grid--item
                         img(src='/img/sample/castle.jpg')
-                    .box
+                    .grid--item
                         img(src='/img/sample/kyotonight.jpg')
-                    .box
+                    .grid--item
                         img(src='/img/sample/sample1.png')
-                    .box
+                    .grid--item
                         img(src='/img/sample/sample5.jpg')
-                    .box
+                    .grid--item
                         img(src='/img/sample/tokyotrain.jpg')
-                    .box.box-text
+                    .grid--item.box-text
                         p 
                             a(href='works') CREATE
-                    .box
+                    .grid--item
                         img(src='/img/sample/harajuku.jpg')
-                    .box
+                    .grid--item
                         img(src='/img/sample/sample2.png')
-                    .box
+                    .grid--item
                         img(src='/img/sample/Kyotocats.jpg')
-                    .box
+                    .grid--item
                         img(src='/img/sample/sample3.jpg')
-                    .box
+                    .grid--item
                         img(src='/img/sample/sample7.jpg')
-                    .box
+                    .grid--item
                         img(src='/img/sample/sample4.jpg')
-                    .box
+                    .grid--item
                         img(src='/img/sample/sample6.jpg')
 
     
     script.
-        $(document).ready(function(){
-            function getWindowWidth() {
-                return Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-            }
-            $('#wookmark1').wookmark({
-                offset: 0,
-                itemWidth: 300,
-                flexibleWidth: function () {
-                    return getWindowWidth() < 1024 ? '100%' : '50%';
-                }
-            });
-        })
+        var gridify = new Gridify();
