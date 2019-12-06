@@ -2,7 +2,7 @@ doctype html
 html
     head
         include set/import.pug
-        script(src='/js/ui/gridify.js')
+        script(src='/js/ui/masonry.pkgd.min.js')
     body
         block header
         include set/header.pug
@@ -11,34 +11,43 @@ html
         .content
             .container
                 .box-grid-layout.grid
-                    .grid--item
+                    .grid-sizer
+                    .grid-item
                         img(src='/img/sample/castle.jpg')
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/kyotonight.jpg')
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/sample1.png')
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/sample5.jpg')
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/tokyotrain.jpg')
-                    .grid--item.box-text
+                    .grid-item.box-text
                         p 
                             a(href='works') CREATE
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/harajuku.jpg')
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/sample2.png')
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/Kyotocats.jpg')
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/sample3.jpg')
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/sample7.jpg')
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/sample4.jpg')
-                    .grid--item
+                    .grid-item
                         img(src='/img/sample/sample6.jpg')
 
     
     script.
-        var gridify = new Gridify();
+        var $grid = $('.grid').masonry({
+            //- itemSelector: '.grid-item',
+            //- percentPosition: true,
+            //- columnWidth: '.grid-sizer'
+        });
+        // layout Masonry after each image loads
+        //- $grid.imagesLoaded().progress( function() {
+        //-     $grid.masonry();
+        //- });  
