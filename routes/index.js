@@ -4,7 +4,7 @@ const testDB = require("../lib/db.js");
 const bodyParser = require('body-parser');
 const router = express.Router();
 const multer = require('multer');
-const upload = multer({ dest: 'repository/img/' })
+const upload = multer({ dest: 'uploads/img/' })
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -21,8 +21,13 @@ router.get('/works', function(req, res, next) {
 });
 
 router.post('/create_process', upload.single('userfile'), function(req, res){
+    let file = req.file;
+    let result = {
+        originalName : file.originalname,
+        size : file.size
+    };
     res.send('Uploaded! : '+req.file); // object를 리턴함
-    console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
+    console.log(file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
   });
 
 // router.post('/create_process', function(req, res, next) {
