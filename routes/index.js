@@ -4,7 +4,16 @@ const testDB = require("../lib/db.js");
 const bodyParser = require('body-parser');
 const router = express.Router();
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/img/' })
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, 'public/uploads/img/');
+    }, 
+    filename: function(req, file, cb){
+        cb(null, file.originalname);
+    }
+})
+
+const upload = multer({ storage: storage, fileFilter: 'png' });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
