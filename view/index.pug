@@ -12,6 +12,11 @@ html
             .container
                 .box-grid-layout.grid
                     .grid-sizer
+
+                    for item in title
+                        .grid-item
+                            img(src=`/img/sample/${item.name}.png`)
+    
                     .grid-item
                         img(src='/img/sample/castle.jpg')
                     .grid-item

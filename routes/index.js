@@ -9,7 +9,7 @@ const upload = multer({ dest: 'uploads/img/' })
 app.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/', function(req, res, next) {
-    testDB.query(`SELECT text FROM maintest`, function(error, list){
+    testDB.query(`SELECT name FROM imgtest`, function(error, list){
         res.render('index', {title: list});
         next();
     });
@@ -24,10 +24,15 @@ router.post('/create_process', upload.single('userfile'), function(req, res){
     let file = req.file;
     let result = {
         originalName : file.originalname,
-        size : file.size
+        size : file.size,
+        fileName : file.filename,
     };
-    res.send('Uploaded! : '+req.file); // object를 리턴함
+    testDB.query(`INSERT INTO imgtest (name) VALUES(?)`, [result.fileName], function(error){
+
+    });
+    res.send('Uploaded! : '+file); // object를 리턴함
     console.log(file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
+    console.log(result.fileName);
   });
 
 // router.post('/create_process', function(req, res, next) {
