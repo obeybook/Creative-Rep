@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage: storage, fileFilter: 'png' });
+const upload = multer({ storage: storage});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -29,7 +29,7 @@ router.get('/works', function(req, res, next) {
     next();
 });
 
-router.post('/create_process', upload.single('userfile'), function(req, res){
+router.post('/works', upload.single('userfile'), function(req, res){
     let file = req.file;
     let result = {
         originalName : file.originalname,
@@ -37,11 +37,8 @@ router.post('/create_process', upload.single('userfile'), function(req, res){
         fileName : file.filename,
     };
     testDB.query(`INSERT INTO imgtest (name) VALUES(?)`, [result.fileName], function(error){
-
+        res.redirect('/');
     });
-    res.send('Uploaded! : '+file); // object를 리턴함
-    console.log(file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
-    console.log(result.fileName);
   });
 
 // router.post('/create_process', function(req, res, next) {
