@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
-const testDB = require("../lib/db.js");
-const bodyParser = require('body-parser');
 const router = express.Router();
+
+const bodyParser = require('body-parser');
+const qs = require('querystring');
+const testDB = require("../lib/db.js");
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
@@ -12,13 +14,13 @@ const storage = multer.diskStorage({
         cb(null, file.originalname);
     }
 })
-
 const upload = multer({ storage: storage});
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 router.get('/', function(req, res, next) {
-    testDB.query(`SELECT name FROM imgtest`, function(error, list){
+    testDB.query(`SELECT * FROM imgtest`, function(error, list){
         res.render('index', {title: list});
         next();
     });
@@ -27,6 +29,14 @@ router.get('/', function(req, res, next) {
 router.get('/works', function(req, res, next) {
     res.render('worksCreate');
     next();
+});
+
+router.get('/works/:id', function(req, res, next){
+    testDB.query(`SELECT * FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
+        res.render('worksDetail');
+        console.log(info[0].id)
+        next();
+    });
 });
 
 router.post('/works', upload.single('userfile'), function(req, res){

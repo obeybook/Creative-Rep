@@ -15,7 +15,8 @@ html
 
                     for item in title
                         .grid-item
-                            img(src=`/uploads/img/${item.name}`)    
+                            a(href=`/works/${item.id}`)
+                                img(src=`/uploads/img/${item.name}`)    
                     .grid-item.box-text
                         p 
                             a(href='works') CREATE
