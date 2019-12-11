@@ -34,7 +34,7 @@ router.get('/works', function(req, res, next) {
 router.get('/works/:id', function(req, res, next){
     testDB.query(`SELECT * FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
         res.render('worksDetail');
-        console.log(info[0].id)
+        console.log(info[0].id);
         next();
     });
 });
