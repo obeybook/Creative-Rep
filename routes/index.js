@@ -19,6 +19,7 @@ const upload = multer({ storage: storage});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+/* 메인 */
 router.get('/', function(req, res, next) {
     testDB.query(`SELECT * FROM imgtest`, function(error, list){
         res.render('index', {title: list});
@@ -26,19 +27,21 @@ router.get('/', function(req, res, next) {
     });
 });
 
+/* 생성페이지 이동 */
 router.get('/works', function(req, res, next) {
     res.render('worksCreate');
     next();
 });
 
+/* 조회 */
 router.get('/works/:id', function(req, res, next){
     testDB.query(`SELECT * FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
-        res.render('worksDetail');
-        console.log(info[0].id);
+        res.render('worksDetail', {detail: info});
         next();
     });
 });
-
+ 
+/* 생성 */
 router.post('/works', upload.single('userfile'), function(req, res){
     let file = req.file;
     let result = {
@@ -50,6 +53,15 @@ router.post('/works', upload.single('userfile'), function(req, res){
         res.redirect('/');
     });
   });
+
+/* 삭제 */
+router.delete('/works/:id',function(req, res){
+    console.log(req.params)
+    testDB.query(`DELETE * FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
+        console.log(req.params)
+    });
+});
+
 
 // router.post('/create_process', function(req, res, next) {
 //     var post = req.body;
