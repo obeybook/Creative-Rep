@@ -1,9 +1,8 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
 const router = express.Router();
-
 const bodyParser = require('body-parser');
-const qs = require('querystring');
 const testDB = require("../lib/db.js");
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -51,15 +50,30 @@ router.post('/works', upload.single('userfile'), function(req, res){
     };
     testDB.query(`INSERT INTO imgtest (name) VALUES(?)`, [result.fileName], function(error){
         res.redirect('/');
+        console.log(file.destination);
+        console.log(file.filename);  
     });
   });
 
 /* 삭제 */
-router.delete('/works/:id',function(req, res){
-    console.log(req.params)
-    testDB.query(`DELETE * FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
-        console.log(req.params)
+router.delete('/works/:id' ,function(req, res){
+    let file = req.file;
+    let result = {
+        originalName : file.originalname,
+        size : file.size,
+        fileName : file.filename,
+    };
+
+    testDB.query(`DELETE FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
+        let path = `./public/${result.fileName}`
+        try {
+            fs.unlinkSync(path)
+        } catch(err) {
+            console.error(err)
+        }
+        res.redirect('/');
     });
+
 });
 
 
