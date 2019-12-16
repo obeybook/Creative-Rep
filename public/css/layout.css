@@ -17,7 +17,9 @@ body{background: #f4f4f4;}
 .box-grid-layout {position: relative; margin: 0.625em 0; padding: 0;}
 .box-grid-layout .box:hover{ opacity: 0.7;}
 .box-grid-layout .box-text{height: 317px;}
-.box-grid-layout .box-text p{height: 100%; background-image: linear-gradient(45deg, #ff548e, #e54cff,#7c90ff,#41abff); color: #f4f4f4; font-weight: 900; font-size: 4em;}
+.box-grid-layout .box-text p{height: 100%; background-image: linear-gradient(45deg, #ff548e, #e54cff,#7c90ff,#41abff);}
+.box-grid-layout .box-text p a{ color: #f4f4f4; font-weight: 900; font-size: 4em;}
+
 .grid-sizer, .grid-item { width: 20%; }
 .grid-item { float: left; -webkit-transition: opacity 0.2s; transition: opacity 0.2s;}
 .grid-item:hover{opacity: 0.7;}
