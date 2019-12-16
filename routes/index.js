@@ -50,26 +50,18 @@ router.post('/works', upload.single('userfile'), function(req, res){
     };
     testDB.query(`INSERT INTO imgtest (name) VALUES(?)`, [result.fileName], function(error){
         res.redirect('/');
-        console.log(file.destination);
-        console.log(file.filename);  
     });
   });
 
 /* 삭제 */
 router.delete('/works/:id' ,function(req, res){
-    let file = req.file;
-    let result = {
-        originalName : file.originalname,
-        size : file.size,
-        fileName : file.filename,
-    };
-
+    let fileName = req.body.fileName
     testDB.query(`DELETE FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
-        let path = `./public/${result.fileName}`
+        let path = `./public/uploads/img/${fileName}`
         try {
-            fs.unlinkSync(path)
+            fs.unlinkSync(path);
         } catch(err) {
-            console.error(err)
+            console.error(err);
         }
         res.redirect('/');
     });

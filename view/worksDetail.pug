@@ -1,3 +1,4 @@
 img(src=`/uploads/img/${detail[0].name}`)
 form(action=`/works/${detail[0].id}?_method=delete` method='post')
+    input(type='hidden' name='fileName' value=`${detail[0].name}`)
     input(type='submit' value='delete')
