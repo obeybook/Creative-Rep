@@ -2,7 +2,7 @@
     .container
         .row.header-row
             .col-xl-2
-
+                img(src='/img/logo.png')
             .col-xl-10
                 .row
                     .col-10
@@ -14,10 +14,10 @@
                             .temp
 script.
     $(".header-user-info").on("click", function(){
-        if( $(".temp").hasClass("open") == false){
-            $(".temp").fadeIn().addClass("open");
-        } else{
-            $(".temp").fadeOut().removeClass("open")
-        }
-        
+        //- if( $(".temp").hasClass("open") == false){
+        //-     $(".temp").fadeIn().addClass("open");
+        //- } else{
+        //-     $(".temp").fadeOut().removeClass("open")
+        //- }
+        $(".temp").toggle();
     });
