@@ -17,16 +17,24 @@ html
                         .grid-item
                             a(href=`/works/${item.id}`)
                                 img(src=`/uploads/img/${item.name}`)    
-                    .grid-item.box-text
+                    .grid-item.box-text#create
                         p 
                             a(href='works') CREATE
+                    .grid-item.box-text#design
+                        p 
+                            a(href='works') DESIGN
 
     
     script.
         $(document).ready(function(){
-            var $grid = $('.grid').masonry({
-                itemSelector: '.grid-item',
-                percentPosition: true,
-                columnWidth: '.grid-sizer'
-            });
+            $('#create').insertAfter('.grid-item:nth-child(2)');
+            $('#design').insertAfter('.grid-item:nth-child(6)');
+
+            setTimeout(function(){
+                var $grid = $('.grid').masonry({
+                    itemSelector: '.grid-item',
+                    percentPosition: true,
+                    columnWidth: '.grid-sizer'
+                });
+            },50)
         })
