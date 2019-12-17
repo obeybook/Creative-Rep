@@ -5,12 +5,16 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const testDB = require("../lib/db.js");
 const multer = require('multer');
+const path = require('path');
+
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
         cb(null, 'public/uploads/img/');
     }, 
     filename: function(req, file, cb){
-        cb(null, file.originalname);
+        const ext = path.extname(file.originalname);
+        //파일이름 + 현재시간 + 확장자
+        cb(null, path.basename(file.originalname, ext) + new Date().valueOf() + ext);
     }
 })
 const upload = multer({ storage: storage});
@@ -20,8 +24,16 @@ app.use(bodyParser.json());
 
 /* 메인 */
 router.get('/', function(req, res, next) {
-    testDB.query(`SELECT * FROM imgtest`, function(error, list){
+    testDB.query(`SELECT * FROM imgtest ORDER BY id DESC`, function(error, list){
         res.render('index', {title: list});
+        next();
+    });
+});
+
+/* 조회 */
+router.get('/works/:id', function(req, res, next){
+    testDB.query(`SELECT * FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
+        res.render('worksDetail', {detail: info});
         next();
     });
 });
@@ -32,14 +44,6 @@ router.get('/works', function(req, res, next) {
     next();
 });
 
-/* 조회 */
-router.get('/works/:id', function(req, res, next){
-    testDB.query(`SELECT * FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
-        res.render('worksDetail', {detail: info});
-        next();
-    });
-});
- 
 /* 생성 */
 router.post('/works', upload.single('userfile'), function(req, res){
     let file = req.file;
@@ -48,7 +52,8 @@ router.post('/works', upload.single('userfile'), function(req, res){
         size : file.size,
         fileName : file.filename,
     };
-    testDB.query(`INSERT INTO imgtest (name) VALUES(?)`, [result.fileName], function(error){
+
+    testDB.query(`INSERT INTO imgtest (name) VALUES(?)`, [file.filename], function(error){
         res.redirect('/');
     });
   });
