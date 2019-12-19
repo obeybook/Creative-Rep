@@ -69,7 +69,7 @@ router.delete('/works/:id' ,function(req, res){
             console.error(err);
         }
         res.redirect('/');
-    });
+    }); 
 
 });
 
