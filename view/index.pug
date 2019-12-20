@@ -15,14 +15,16 @@ html
 
                     for item in title
                         .grid-item
-                            a(href=`/works/${item.id}`)
+                            a(href=`#` id='datail' name=item.id)
                                 img(src=`/uploads/img/${item.name}`)    
                     .grid-item.box-text#create
                         p 
-                            a(href='works') CREATE
+                            a(href='#' id='create') CREATE
                     .grid-item.box-text#design
                         p 
                             a(href='works') DESIGN
+            .test(style='display:none')
+            .test2(style='display:none')
 
     
     script.
@@ -37,4 +39,25 @@ html
                     columnWidth: '.grid-sizer'
                 });
             },50)
+
+            $('#create').on('click',function(){
+                $.ajax({
+                    url : "/works",
+                    type : "GET",
+                    success: function(data){
+                        $('.test').html(data).css('display','block')
+                    }
+                })
+            })
+            $('#datail').on('click',function(){
+                var selectId = $(this).attr(name);
+                console.log(selectId)
+                $.ajax({
+                    url : `/works/${selectId}`,
+                    type : "GET",
+                    success: function(data){
+                        $('.test2').html(data).css('display','block')
+                    }
+                })
+            })
         })
