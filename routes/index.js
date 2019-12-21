@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 /* 메인 */
 router.get('/', function(req, res, next) {
     testDB.query(`SELECT * FROM imgtest ORDER BY id DESC`, function(error, list){
-        res.render('index', {title: list});
+        res.render('index', {imageList : list});
         next();
     });
 });
