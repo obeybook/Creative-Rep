@@ -13,10 +13,10 @@ html
                 .box-grid-layout.grid
                     .grid-sizer
 
-                    for item in title
+                    for item in imageList
                         .grid-item
-                            a(href=`#` id='datail' name=item.id)
-                                img(src=`/uploads/img/${item.name}`)    
+                            a(href=`#` class='datail')
+                                img(src=`/uploads/img/${item.name}` id=`${item.id}`)
                     .grid-item.box-text#create
                         p 
                             a(href='#' id='create') CREATE
@@ -25,7 +25,6 @@ html
                             a(href='works') DESIGN
             .test(style='display:none')
             .test2(style='display:none')
-
     
     script.
         $(document).ready(function(){
@@ -49,11 +48,11 @@ html
                     }
                 })
             })
-            $('#datail').on('click',function(){
-                var selectId = $(this).attr(name);
-                console.log(selectId)
+            $('.datail img').on('click',function(){
+                var selectImg = $(this).attr('id')
+                console.log(selectImg)
                 $.ajax({
-                    url : `/works/${selectId}`,
+                    url : `/works/${selectImg}`,
                     type : "GET",
                     success: function(data){
                         $('.test2').html(data).css('display','block')
