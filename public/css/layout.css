@@ -24,10 +24,13 @@ body{background: #f4f4f4;}
 .grid-sizer, .grid-item { width: 20%; }
 .grid-item { float: left; -webkit-transition: opacity 0.2s; transition: opacity 0.2s;}
 .grid-item:hover{opacity: 0.7;}
-.grid-item img { display: block; max-width: 100%; }
+.grid-item .grid-image { cursor: pointer; }
+.grid-item .grid-image img { display: block; max-width: 100%; }
     
-/* 리사이즈 할 때, 공백이 생기는 에러 */
-/* .box-grid-layout.animated .box { -webkit-transition: all 0.1s ease-out; -moz-transition: all 0.1s ease-out; -o-transition: all 0.1s ease-out; transition: all 0.1s ease-out; } */
+.layer-wrap { position: fixed; background: rgba(0, 0, 0, 0.25); top: 0; left: 0; right: 0; height: 100%; z-index: 9999; }
+.layer-box { position: absolute; left: 0; right: 0; margin: 0 auto; background: #fff; width: 80%; }
+.layer-box img{max-width: 40.625em; max-height: 40.625em;}
+
 /************************************/
 @-webkit-keyframes slide-down {
     0% { opacity: 0; -webkit-transform: translateY(-10%); }   

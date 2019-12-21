@@ -15,7 +15,7 @@ html
 
                     for item in imageList
                         .grid-item
-                            a(href=`#` class='datail')
+                            div(id='datail' class='grid-image')
                                 img(src=`/uploads/img/${item.name}` id=`${item.id}`)
                     .grid-item.box-text#create
                         p 
@@ -23,8 +23,8 @@ html
                     .grid-item.box-text#design
                         p 
                             a(href='works') DESIGN
-            .test(style='display:none')
-            .test2(style='display:none')
+        .test(style='display:none')
+        .layer-wrap#layer(style='display:none')
     
     script.
         $(document).ready(function(){
@@ -44,18 +44,18 @@ html
                     url : "/works",
                     type : "GET",
                     success: function(data){
-                        $('.test').html(data).css('display','block')
+                        $('.test').html(data).fadeIn()
                     }
                 })
             })
-            $('.datail img').on('click',function(){
+            $('#datail img').on('click',function(){
                 var selectImg = $(this).attr('id')
                 console.log(selectImg)
                 $.ajax({
                     url : `/works/${selectImg}`,
                     type : "GET",
                     success: function(data){
-                        $('.test2').html(data).css('display','block')
+                        $('#layer').html(data).fadeIn()
                     }
                 })
             })
