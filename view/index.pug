@@ -44,10 +44,18 @@ html
                     url : "/works",
                     type : "GET",
                     success: function(data){
-                        $('.test').html(data).fadeIn()
+                        $('#layer').html(data).fadeIn()
                     }
                 })
             })
+            
+            function layerAutoSet(){
+                var browserHeight = window.innerHeight;
+                var layerHeight = $('.layer-box').height();
+                var layerTop = ( browserHeight - layerHeight ) / 2;
+                $('.layer-box').css('top',layerTop);
+            }
+
             $('#datail img').on('click',function(){
                 var selectImg = $(this).attr('id')
                 console.log(selectImg)
@@ -56,6 +64,7 @@ html
                     type : "GET",
                     success: function(data){
                         $('#layer').html(data).fadeIn()
+                        layerAutoSet()
                     }
                 })
             })

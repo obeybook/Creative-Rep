@@ -27,9 +27,36 @@ body{background: #f4f4f4;}
 .grid-item .grid-image { cursor: pointer; }
 .grid-item .grid-image img { display: block; max-width: 100%; }
     
-.layer-wrap { position: fixed; background: rgba(0, 0, 0, 0.25); top: 0; left: 0; right: 0; height: 100%; z-index: 9999; }
+.layer-wrap { position: fixed; background: rgba(0, 0, 0, 0.53); top: 0; left: 0; right: 0; height: 100%; z-index: 9999; }
 .layer-box { position: absolute; left: 0; right: 0; margin: 0 auto; background: #fff; width: 80%; }
 .layer-box img{max-width: 40.625em; max-height: 40.625em;}
+
+.detail-box .detail-info { display: flex; flex-flow: column; width: 100%; padding:0.625em 1em; color:#444 }
+.detail-box .detail-option { text-align: right; position: relative;}
+.detail-box .detail-option > i { color: #8b8b8b; cursor: pointer; font-size: 1.4em;}
+.detail-box .detail-option > i:not(:last-child){margin-right: 0.2em;}
+.detail-box .detail-option > i:hover{opacity: 0.7;}
+
+.detail-box .detail-option-box{display: none; position: absolute; right: 1.875em; background: #fff; border: 1px solid #e0e0e0; box-shadow: 2px 2px 4px #a7a7a7; 
+    z-index: 10; text-align: left; padding: 0.2em 1em 0.2em 0.5em;}
+.detail-box .option-box-row{ cursor: pointer;}
+.detail-box .option-box-row:hover{opacity: 0.7;}
+
+.detail-box .detail-option-box i{ font-size: 1.2em; color: #ababab; margin-right: 0.4em; vertical-align: middle;}
+.detail-box .detail-option-box span{ font-size: 0.9em; color: #757575; vertical-align: middle; font-weight: 300;}
+
+.detail-box .detail-title{padding-bottom: 0.2em; border-bottom: 1px solid #eaeaea; font-weight: 100;}
+.detail-box .detail-description{padding: 2em 0;border-bottom: 1px solid #eaeaea; font-weight: 100;}
+
+.respect-each{cursor: pointer; display: inline-block;}
+.respect-each:hover{opacity: 0.7;}
+.respect-each i{vertical-align: middle; margin-right: 0.2em; font-size: 1.5em; color: #f7c324;}
+.respect-each span{vertical-align: middle; font-size: 0.9em; color: #f1bd1f;}
+
+.comment-each{cursor: pointer; display: inline-block; margin-left: 1.2em;}
+.comment-each:hover{opacity: 0.7;}
+.comment-each i{vertical-align: middle; margin-right: 0.2em; font-size: 1.5em; color: #5f5f5f;}
+.comment-each span{vertical-align: middle; font-size: 0.9em; color: #5f5f5f;}
 
 /************************************/
 @-webkit-keyframes slide-down {

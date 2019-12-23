@@ -1,13 +1,51 @@
 .layer-box
-    img(src=`/uploads/img/${detail[0].name}`)
-    form(action=`/works/${detail[0].id}?_method=delete` method='post')
-        input(type='hidden' name='fileName' value=`${detail[0].name}`)
-        input(type='submit' value='delete')
-    input(type='button' id='close' value='close')
+    .detail-box.row
+        .detail-img
+            img(src=`/uploads/img/${detail[0].name}`)
+        .detail-info   
+            .row
+                .col-8
+                    .detail-user-profile
+                .col-4
+                    .detail-option
+                        i(class='mdi mdi-dots-vertical' id='detail-option')
+                        i(class='mdi mdi-close' id='close')
+                        .detail-option-box
+                            form(action=`/works/${detail[0].id}?_method=delete` method='post')
+                                input(type='hidden' name='fileName' value=`${detail[0].name}`)
+                                //- input(type='submit' value='delete')
+                                .option-box-row
+                                    i(class='mdi mdi-delete')
+                                    span 삭제
+                                .option-box-row
+                                    i(class='mdi mdi-pencil')
+                                    span 수정
+            .row
+                .col-12
+                    h2.detail-title TITLE
+            .row
+                .col-12
+                    .detail-description description
+            .row   
+                .col-12
+                    .row
+                        .col-12
+                            .respect-each
+                                .respect
+                                    i(class='mdi mdi-emoticon-lol-outline')
+                                    span 354
+                            .comment-each
+                                .comment
+                                    i(class='mdi mdi-comment-outline')
+                                    span 17
 
 script.
     $(document).ready(function(){
         $('#close').on('click',function(){
             $("#layer").fadeOut().html('');
+        })
+        $('#detail-option').on('click',function(){
+            $('.detail-option-box').toggle(function(){
+            })
         })
     })
