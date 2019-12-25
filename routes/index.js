@@ -58,7 +58,7 @@ router.post('/works', upload.single('userfile'), function(req, res){
     });
   });
 
-/* 삭제 */
+/* 삭제 */ 
 router.delete('/works/:id' ,function(req, res){
     let fileName = req.body.fileName
     testDB.query(`DELETE FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
