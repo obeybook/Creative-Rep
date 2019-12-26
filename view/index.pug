@@ -28,9 +28,11 @@ html
     
     script.
         $(document).ready(function(){
+            //- 카테고리 박스 위치 지정
             $('#create').insertAfter('.grid-item:nth-child(2)');
             $('#design').insertAfter('.grid-item:nth-child(6)');
 
+            //- 이미지 그리드 배치
             setTimeout(function(){
                 var $grid = $('.grid').masonry({
                     itemSelector: '.grid-item',
@@ -39,16 +41,7 @@ html
                 });
             },50)
 
-            $('#create').on('click',function(){
-                $.ajax({
-                    url : "/works",
-                    type : "GET",
-                    success: function(data){
-                        $('#layer').html(data).fadeIn()
-                    }
-                })
-            })
-            
+            //- 레이어 팝업 가운데 배치
             function layerAutoSet(){
                 var browserHeight = window.innerHeight;
                 var layerHeight = $('.layer-box').height();
@@ -56,9 +49,21 @@ html
                 $('.layer-box').css('top',layerTop);
             }
 
+            //- 생성팝업
+            $('#create').on('click',function(){
+                $.ajax({
+                    url : "/works",
+                    type : "GET",
+                    success: function(data){
+                        $('#layer').html(data).fadeIn()
+                        layerAutoSet()
+                    }
+                })
+            })
+
+            //- 조회팝업
             $('#datail img').on('click',function(){
                 var selectImg = $(this).attr('id')
-                console.log(selectImg)
                 $.ajax({
                     url : `/works/${selectImg}`,
                     type : "GET",

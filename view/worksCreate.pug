@@ -1,7 +1,39 @@
-form(action="/works" method="post" enctype="multipart/form-data")
-    //- div
-    //-     input(type="text" name="text")
-    div
-        input(type="file" name="userfile")
-    div
-        input(type="submit")
+.layer-box 
+    .row
+        .layer-color-box
+            asd
+        .layer-content
+            .row.layer-border-bottom
+                .col-4
+                    h2 CREATE 
+                        span.yellow !
+                .col-8
+                    .layer-option
+                        i(class='mdi mdi-dots-vertical' id='detail-option')
+                        i(class='mdi mdi-close' id='close')
+                        .layer-option-box
+                            .option-box-row
+                                i(class='mdi mdi-delete')
+                                span 
+                            .option-box-row
+                                i(class='mdi mdi-pencil')
+                                span 
+
+            form(action="/works" method="post" enctype="multipart/form-data")
+                //- div
+                //-     input(type="text" name="text")
+                div
+                    input(type="file" name="userfile")
+                div
+                    input(type="submit")
+
+script.
+    $(document).ready(function(){
+        $('#close').on('click',function(){
+            $("#layer").fadeOut().html('');
+        })
+        $('#detail-option').on('click',function(){
+            $('.layer-option-box').toggle(function(){
+            })
+        })
+    })

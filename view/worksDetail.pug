@@ -7,10 +7,10 @@
                 .col-8
                     .detail-user-profile
                 .col-4
-                    .detail-option
+                    .layer-option
                         i(class='mdi mdi-dots-vertical' id='detail-option')
                         i(class='mdi mdi-close' id='close')
-                        .detail-option-box
+                        .layer-option-box
                             form(action=`/works/${detail[0].id}?_method=delete` method='post')
                                 input(type='hidden' name='fileName' value=`${detail[0].name}`)
                                 //- input(type='submit' value='delete')
@@ -45,7 +45,7 @@ script.
             $("#layer").fadeOut().html('');
         })
         $('#detail-option').on('click',function(){
-            $('.detail-option-box').toggle(function(){
+            $('.layer-option-box').toggle(function(){
             })
         })
     })
