@@ -14,7 +14,10 @@ const storage = multer.diskStorage({
     filename: function(req, file, cb){
         const ext = path.extname(file.originalname);
         //파일이름 + 현재시간 + 확장자
-        cb(null, path.basename(file.originalname, ext) + new Date().valueOf() + ext);
+        // cb(null, path.basename(file.originalname, ext) + new Date().valueOf() + ext);
+        
+        //현재시간 + 확장자
+        cb(null, new Date().valueOf() + ext);
     }
 })
 const upload = multer({ storage: storage});
