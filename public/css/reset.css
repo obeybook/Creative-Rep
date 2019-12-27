@@ -112,13 +112,6 @@ article > * + * {
 }
 
 /* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
 a{
   text-decoration: none;
 }

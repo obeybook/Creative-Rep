@@ -5,8 +5,9 @@
         .layer-content
             .row.layer-border-bottom
                 .col-4
-                    h2 CREATE 
-                        span.yellow !
+                    h2 CREA
+                        span.yellow T
+                        |E
                 .col-8
                     .layer-option
                         i(class='mdi mdi-dots-vertical' id='detail-option')
@@ -22,21 +23,26 @@
                 .col-12
                     .row
                         .col-12
-                            input(type='text' class='form-custom')
+                            input(type='text' id='title' class='form-custom' placeholder='title')
                     .row
                         .col-12
-                            input(type='text' class='form-custom')
+                            textarea( id='Description' class='form-custom' placeholder='description' row='45')
                     .row
                         .col-12
-                            input(type='text' class='form-custom')
+                            .input-group
+                                input(type='text' class='form-custom' readonly)
+                                .file-box
+                                    label(for='userfile') UPLOAD
+                                    input(type="file" name="userfile" id="userfile")
+                    .row
+                        .col-12
+                            input(type='submit' class="button-point" value="Okay!")
 
-            form(action="/works" method="post" enctype="multipart/form-data")
-                //- div
-                //-     input(type="text" name="text")
-                div
-                    input(type="file" name="userfile")
-                div
-                    input(type="submit")
+            //- form(action="/works" method="post" enctype="multipart/form-data")
+            //-     div
+            //-         input(type="file" name="userfile")
+            //-     div
+            //-         input(type="submit")
 
 script.
     $(document).ready(function(){
