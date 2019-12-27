@@ -11,10 +11,7 @@
                         i(class='mdi mdi-dots-vertical' id='detail-option')
                         i(class='mdi mdi-close' id='close')
                         .layer-option-box
-                            form(action=`/works/${detail[0].id}?_method=delete` method='post')
-                                input(type='hidden' name='fileName' value=`${detail[0].name}`)
-                                //- input(type='submit' value='delete')
-                                .option-box-row
+                                .option-box-row#image-delete
                                     i(class='mdi mdi-delete')
                                     span 삭제
                                 .option-box-row
@@ -46,6 +43,21 @@ script.
         })
         $('#detail-option').on('click',function(){
             $('.layer-option-box').toggle(function(){
+            })
+        })
+
+
+        $('#image-delete').on('click',function(){
+            var detailId = #{detail[0].id}
+            var detailName = '#{detail[0].name}'
+            $.ajax({
+                url : `/works/${detailId}?_method=delete`,
+                type : "POST",
+                data : { 'fileName' : detailName },
+                success: function(data){
+                    $("#layer").fadeOut().html('');
+                    location.reload();
+                }
             })
         })
     })
