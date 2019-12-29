@@ -32,6 +32,18 @@ html
             $('#create').insertAfter('.grid-item:nth-child(2)');
             $('#design').insertAfter('.grid-item:nth-child(8)');
 
+            //- 카데고리 박스 높이 설정
+            function categoryBoxHeight(){
+                var w = $('.box-text').width();
+                $('.box-text').css('height',w);
+            }
+
+            categoryBoxHeight();
+
+            $(window).resize(function(){
+                categoryBoxHeight();
+            })
+
             //- 이미지 그리드 배치
             setTimeout(function(){
                 var _grid = $('.grid').masonry({

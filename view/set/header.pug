@@ -1,30 +1,27 @@
 .header 
     .container
-        .row.header-row
-            .col-xl-2
+        .row.header-row.justify-content-between
+            .logo
                 h2 CREA
                     span.yellow P
                     |O
-            .col-xl-10
-                .row
-                    .col-10
-                    .header-user.col-2
-                        .header-alarm.header-func
-                            i.mdi.mdi-bell
-                        .header-user-info.header-func
-                            i.mdi.mdi-account.account
-                            .user-info-box
-                                .row
-                                    .col-12
-                                        .profile-header.align-items-center
-                                            .profile-selfie
-                                            span.profile-name Welcome !
-                                .profile-desc
-                                    .row
-                                        .col-12
-                                            .profile-ment
-                                                |Creapo에 회원 가입하시면 더 많은 혜택과 아마 로또가 당첨될걸요?
-                                                span.yellow.signin 회원가입
+            .header-user
+                .header-alarm.header-func
+                    i.mdi.mdi-bell
+                .header-user-info.header-func
+                    i.mdi.mdi-account.account
+                    .user-info-box
+                        .row
+                            .col-12
+                                .profile-header.align-items-center
+                                    .profile-selfie
+                                    span.profile-name Welcome !
+                        .profile-desc
+                            .row
+                                .col-12
+                                    .profile-ment
+                                        |Creapo에 회원 가입하시면 더 많은 혜택과 아마 로또가 당첨될걸요?
+                                        span.yellow.signin 회원가입
 
 script.
     $(".header-user-info .account").on("click", function(){
