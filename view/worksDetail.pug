@@ -51,7 +51,7 @@ script.
             var detailId = #{detail[0].id}
             var detailName = '#{detail[0].name}'
             $.ajax({
-                url : `/works/${detailId}?_method=delete`,
+                url : '/works/' + detailId + '?_method=delete',
                 type : "POST",
                 data : { 'fileName' : detailName },
                 success: function(data){

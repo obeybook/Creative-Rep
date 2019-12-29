@@ -34,7 +34,7 @@ html
 
             //- 이미지 그리드 배치
             setTimeout(function(){
-                var $grid = $('.grid').masonry({
+                var _grid = $('.grid').masonry({
                     itemSelector: '.grid-item',
                     percentPosition: true,
                     columnWidth: '.grid-sizer'
@@ -65,7 +65,7 @@ html
             $('#datail img').on('click',function(){
                 var selectImg = $(this).attr('id')
                 $.ajax({
-                    url : `/works/${selectImg}`,
+                    url : '/works/'+selectImg,
                     type : "GET",
                     success: function(data){
                         $('#layer').html(data).fadeIn()
