@@ -12,14 +12,26 @@
                         .header-alarm.header-func
                             i.mdi.mdi-bell
                         .header-user-info.header-func
-                            i.mdi.mdi-account
-                            .temp
+                            i.mdi.mdi-account.account
+                            .user-info-box
+                                .row
+                                    .col-12
+                                        .profile-header.align-items-center
+                                            .profile-selfie
+                                            span.profile-name Welcome !
+                                .profile-desc
+                                    .row
+                                        .col-12
+                                            .profile-ment
+                                                |Creapo에 회원 가입하시면 더 많은 혜택과 아마 로또가 당첨될걸요?
+                                                span.yellow.signin 회원가입
+
 script.
-    $(".header-user-info").on("click", function(){
+    $(".header-user-info .account").on("click", function(){
         //- if( $(".temp").hasClass("open") == false){
         //-     $(".temp").fadeIn().addClass("open");
         //- } else{
         //-     $(".temp").fadeOut().removeClass("open")
         //- }
-        $(".temp").toggle();
+        $(".user-info-box").toggle();
     });

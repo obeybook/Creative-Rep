@@ -9,9 +9,16 @@ body{background: #f4f4f4;}
 .header-user i:hover{opacity: 0.7;}
 .header-user i:before{ font-size: 1.2em;}
 .header-user-info{position: relative;}
-
-.temp{position: absolute; top: 2em; left: auto; right: 0; width: 9em; height: 13em; background: #fff; border-radius: 8px; box-shadow: 1px 3px 5px 0px #505050;
+.header-user .user-info-box{position: absolute; top: 2em; left: auto; right: 0;  background: #fff; border-radius: 8px; box-shadow: 1px 3px 5px 0px #505050;
     -webkit-animation: slide-down .2s cubic-bezier(0.4, 0, 1, 1); -moz-animation: slide-down .2s cubic-bezier(0.4, 0, 1, 1); animation: slide-down .2s cubic-bezier(0.4, 0, 1, 1); display: none;}
+.user-info-box .profile-header{ display: -ms-flexbox; display: flex; padding:0.5em; color:#474747; background: #fcd661;}
+.user-info-box .profile-selfie{ width: 4em; height: 4em; border: 2px solid #ffc30b;}
+.user-info-box .profile-name{margin-left:0.5em; margin-bottom: 0.1em; min-width: 13em; font-size: 1.2em;}
+
+.user-info-box .profile-desc{padding:0.5em;}
+.user-info-box .profile-ment{color: #525252; font-weight: 300; font-size: 0.8em;}
+.user-info-box .profile-ment .signin{margin-left: 0.3em; cursor: pointer;}
+.user-info-box .profile-ment .signin:hover{opacity: 0.7;}
 
 .content{ margin-top: 5.5em; }
 .container{ margin: 0 auto; }
