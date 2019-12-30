@@ -76,6 +76,9 @@ router.delete('/works/:id' ,function(req, res){
 
 });
 
+/* 수정 */ 
+router.put('/works/:id' ,function(req, res){
+});
 
 // router.post('/create_process', function(req, res, next) {
 //     var post = req.body;
