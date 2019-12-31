@@ -1,0 +1,29 @@
+.layer-box
+    .detail-box.row
+        .detail-img
+            img(src=`/uploads/img/${detail[0].name}`)
+        .detail-info   
+            .row
+                .col-8
+                    .detail-user-profile
+                .col-4
+                    .layer-option
+                        i(class='mdi mdi-close' id='close')
+            .row
+                .col-12
+                    h2.detail-title TITLE
+            .row
+                .col-12
+                    .detail-description description
+            .row   
+                .col-12
+                    .row
+                        .col-12
+                            .respect-each
+                                .respect
+                                    i(class='mdi mdi-emoticon-lol-outline')
+                                    span 354
+                            .comment-each
+                                .comment
+                                    i(class='mdi mdi-comment-outline')
+                                    span 17

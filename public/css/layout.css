@@ -28,11 +28,11 @@ body{background: #f4f4f4;}
 .form-row .row {margin-bottom: 1em;}
 
 .box-grid-layout {position: relative; margin: 0.625em 0; padding: 0;}
-.box-grid-layout .box-text{height: 317px;}
+.box-grid-layout .box-text{}
 .box-grid-layout .box-text p{height: 100%; padding:0.5em; background: #fcd661;}
 .box-grid-layout .box-text p a{ color: #474747; font-weight: 900; font-size: 2.5em; word-break: break-all; line-height: 1em;}
 
-.grid-sizer, .grid-item { width: 20%; }
+.grid-sizer, .grid-item { width: 100%; }
 .grid-item { float: left; -webkit-transition: opacity 0.2s; transition: opacity 0.2s;}
 .grid-item:hover{opacity: 0.7;}
 .grid-item .grid-image { cursor: pointer; }
@@ -99,10 +99,13 @@ body{background: #f4f4f4;}
 @media all and (min-width:769px) {
     .header .logo h2{font-size: 2em;}
     .box-grid-layout .box-text p a{ font-size: 4em; }
+
+    .grid-sizer, .grid-item { width: 25%; }
 }
 
 @media all and (min-width:1024px) {
     .header .logo h2{font-size: 2.8em;}
     .header > .container{ width: 100%; }
-    /* .container{ width: 76em; } */
+
+    .grid-sizer, .grid-item { width: 20%; }
 }
