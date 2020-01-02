@@ -28,16 +28,24 @@ app.use(bodyParser.json());
 /* 메인 */
 router.get('/', function(req, res, next) {
     testDB.query(`SELECT * FROM imgtest ORDER BY id DESC`, function(error, list){
-        res.render('index', {imageList : list});
-        next();
+        if(error){
+            console.log(error)
+        }else{
+            res.render('index', {imageList : list});
+            next();
+        }
     });
 });
 
 /* 조회 */
 router.get('/works/:id', function(req, res, next){
     testDB.query(`SELECT * FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
-        res.render('worksDetail', {detail: info});
-        next();
+        if(error){
+            console.log(error)
+        }else{
+            res.render('worksDetail', {detail: info});
+            next();
+        }
     });
 });
 
@@ -57,7 +65,11 @@ router.post('/works', upload.single('userfile'), function(req, res){
     };
 
     testDB.query(`INSERT INTO imgtest (name) VALUES(?)`, [file.filename], function(error){
-        res.redirect('/');
+        if(error){
+            console.log(error)
+        }else{
+            res.redirect('/');
+        }
     });
   });
 
