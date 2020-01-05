@@ -31,13 +31,3 @@ script.
         //- }
         $(".user-info-box").toggle();
     });
-    
-    $('#signin').on('click',function(){
-        $.ajax({
-            url : "/users",
-            type : "GET",
-            success: function(data){
-                alert("asd")
-            }
-        })
-    })
