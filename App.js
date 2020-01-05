@@ -18,7 +18,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public'))); //동적 파일 경로 설정
 
 app.use('/', routes); //라우팅
-app.use('/auth', auth); //라우팅
+app.use('/auth', auth);
 
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!')
