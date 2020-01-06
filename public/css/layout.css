@@ -3,7 +3,7 @@ body{background: #f4f4f4;}
 .header{position: fixed; top: 0; left: 0; right: 0; z-index:9999; background: #fff; /*background-image: linear-gradient(20deg, #d6e3fe, #ebe5fa,#ebe5fa,#ebe5fa,#f8d7db,#f8c1e2);*/} 
 .header > .container{ margin: 0 auto;}
 .header .header-row{ height: 5.5em; padding: 0 2.5em; -ms-flex-align: center !important; align-items: center !important;}
-.header .logo h2{font-weight: 700; color: #474747;}
+.header .logo h2{font-weight: 700; color: #474747; cursor: pointer;}
 .header .header-func{display: inline-block;}
 .header .header-func:not(:last-child){ margin-right: 12px; transition: opacity 0.2s; -webkit-transition: opacity 0.2s;}
 .header-user i{ color: #bdbdbd; cursor: pointer; }
