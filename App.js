@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
 const routes = require('./routes/index.js');
-const auth = require('./routes/auth/auth.js');
+const auth = require('./routes/auth/users.js');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './view'));  
@@ -15,9 +15,9 @@ app.use(bodyParser.json());
 
 app.use(methodOverride('_method'));
 
-app.use(express.static(path.join(__dirname, 'public'))); //동적 파일 경로 설정
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes); //라우팅
+app.use('/', routes); 
 app.use('/users', auth);
 
 app.listen(3000, function() {
