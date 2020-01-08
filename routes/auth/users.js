@@ -6,8 +6,9 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-router.get('/users' ,function(req, res){
-    console.log("ㅊㅊ");
+router.get('/' ,function(req, res){
+    res.render('auth/login');
+    next();
 });
 
 module.exports = router; 

@@ -87,13 +87,6 @@ router.delete('/works/:id' ,function(req, res){
     }); 
 
 });
-
-/* 임시 */
-router.get('/users' ,function(req, res){
-    res.render("auth/login");
-    next();
-});
-
 /* 수정 */ 
 // router.put('/works/:id' ,function(req, res){
 // });
