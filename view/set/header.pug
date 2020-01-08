@@ -2,9 +2,10 @@
     .container
         .row.header-row.justify-content-between
             .logo
-                h2 CREA
-                    span.yellow P
-                    |O
+                h2 
+                    a(href="/") CREA
+                        span.yellow P
+                        |O
             .header-user
                 .header-alarm.header-func
                     i.mdi.mdi-bell
@@ -24,10 +25,5 @@
 
 script.
     $(".header-user-info .account").on("click", function(){
-        //- if( $(".temp").hasClass("open") == false){
-        //-     $(".temp").fadeIn().addClass("open");
-        //- } else{
-        //-     $(".temp").fadeOut().removeClass("open")
-        //- }
         $(".user-info-box").toggle();
     });

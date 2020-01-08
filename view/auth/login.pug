@@ -1,11 +1,16 @@
 doctype html
 html
     head
-        include set/import.pug
-    body
-        block header
-        include set/header.pug
-
+        include ../set/import.pug
+    body.login-body
         block main-content 
-        .content
-            .container
+        .login-content.align-items-center
+            .login-box.row
+                .login-left.col-xl-5
+                .login-right.col-xl-7
+                    .login-form-box
+                        .logo
+                            h2
+                                a(href="/") CREA
+                                    span.yellow P
+                                    |O
