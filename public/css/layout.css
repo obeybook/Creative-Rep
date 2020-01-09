@@ -48,6 +48,12 @@ body{background: #f4f4f4;}
 
 .login-form-box{margin:1em;}
 
+.register{text-align: right;}
+.user-func-link{color: #9c9c9c; font-size: 0.7em;}
+.user-func-link:hover{opacity: 0.7;}
+.user-func-link a{vertical-align: middle;}
+.user-func-link i{vertical-align: middle;}
+.user-func-link i:before{font-size: 1.2em;}
 /** 레이어 팝업 부분 **/
 .layer-wrap { position: fixed; background: rgba(0, 0, 0, 0.53); top: 0; left: 0; right: 0; height: 100%; z-index: 9999; }
 .layer-box { position: absolute; left: 0; right: 0; margin: 0 auto; background: #fff; width: 80%; }
@@ -111,13 +117,15 @@ body{background: #f4f4f4;}
     .login-box{width: 90%; height: 40em;}
 }
 
-@media all and (min-width:481px) {
+@media all and (min-width:481px) and (max-width: 767px) {
 
     /* 로그인 */
-    .login-box{width: 90%; height: 40em;}
+    .login-box{width: 90%; height: 35em; flex-direction: column;}
+    .login-left{ flex: 2; -ms-flex: 1; border-radius: 0; border-top-left-radius: 30px; border-top-right-radius: 30px; background-position: 0 0; }
+    .login-right{ flex: 3; -ms-flex: 1; border-radius: 0; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;}
 }
 
-@media all and (min-width:768px) {
+@media (min-width: 768px) and (max-width: 1024px) {
     .header .logo h2{font-size: 2em;}
     .box-grid-layout .box-text p a{ font-size: 4em; }
 

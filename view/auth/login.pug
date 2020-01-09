@@ -6,11 +6,31 @@ html
         block main-content 
         .login-content.align-items-center
             .login-box.row
-                .login-left.col-xl-5
-                .login-right.col-xl-7
+                .login-left.col-xl-5.col-md-4
+                .login-right.col-xl-7.col-md-8
                     .login-form-box
-                        .logo
-                            h2
-                                a(href="/") CREA
-                                    span.yellow P
-                                    |O
+                        .row
+                            .col-12
+                                .logo
+                                    h2
+                                        a(href="/") CREA
+                                            span.yellow P
+                                            |O
+                        .row.form-row
+                            .col-12
+                                .row
+                                    .col-12
+                                        input(type='text' id='title' class='form-custom' placeholder="ID")
+                                .row
+                                    .col-12
+                                        input(type='text' id='title' class='form-custom' placeholder='Password')
+                                .row
+                                    .col-12
+                                        input(type='submit' class="button-point" value="Join!")
+                                .row
+                                    .col-6
+                                        .find.user-func-link
+                                            a(href="") 귀찮게 비밀번호 찾아드려요?
+                                    .col-6
+                                        .register.user-func-link
+                                            a(href="/users/register") 로또 당첨되고 싶다고요?

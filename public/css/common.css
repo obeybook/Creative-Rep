@@ -1,7 +1,12 @@
 .yellow{color: #f1bd1f;}
-.button-point{background: #fcd661; color: #474747; border: 0; padding: 0.6em 3em; cursor: pointer; -webkit-transition: opacity 0.2s; transition: opacity 0.2s;}
+.button-point{background: #fcd661; color: #474747; border: 0; padding: 0.6em 3em; cursor: pointer; -webkit-transition: opacity 0.2s; transition: opacity 0.2s; border-radius: 11px;}
 .button-point:hover{opacity: 0.7;}
  
+.form-custom{ width: 100%; border: 0; border-bottom: 1px solid #dadada; padding: 0.5em 0.2em; font-size: 0.9em; font-weight:300; -webkit-transition: border-bottom 0.5s; transition: border-bottom 0.5s;}
+.form-custom::placeholder{color:#bfbfbf;}
+.form-custom:focus{outline:none; border-bottom: 1px solid #f1bd1f; color:#f1bd1f;}
+.form-custom:focus::placeholder{color:#f1bd1f;}
+
 .file-box input[type='file']{ position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;}
 
 .row { display: -ms-flexbox; display: flex; }
