@@ -6,6 +6,11 @@ const bodyParser = require('body-parser');
 const testDB = require("../lib/db.js");
 const multer = require('multer');
 const path = require('path');
+const jwt = require('jsonwebtoken');
+
+const token = jwt.sign({sub : 'asd1234'} , 'secret_key');
+const decoded_data = jwt.verify(token, 'secret_key');
+console.log(decoded_data.sub)
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
