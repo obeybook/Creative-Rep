@@ -1,1 +1,36 @@
-div Hello
+doctype html
+html
+    head
+        include ../../set/import.pug
+    body.login-body
+        block main-content 
+        .login-content.align-items-center
+            .login-box.reg-box.row
+                .login-left.col-xl-5.col-md-8
+                    .login-form-box
+                        .row
+                            .col-12
+                                .logo
+                                    h2
+                                        a(href="/") CREA
+                                            span.yellow P
+                                            |O
+                        .row.form-row
+                            .col-12
+                                form
+                                    .row
+                                        .col-12
+                                            input(type='text' id='title' class='form-custom' placeholder="ID")
+                                    .row
+                                        .col-12
+                                            input(type='text' id='title' class='form-custom' placeholder="E-Mail")
+                                    .row
+                                        .col-12
+                                            input(type='text' id='title' class='form-custom' placeholder='Password')
+                                    .row
+                                        .col-12
+                                            input(type='text' id='title' class='form-custom' placeholder='Confirm Password')
+                                    .row
+                                        .col-12
+                                            input(type='submit' class="button-point" value="Okay!")
+                .login-right.col-xl-7.col-md-4

@@ -40,20 +40,25 @@ body{background: #f4f4f4;}
 
 /** 로그인 레이아웃 **/
 .login-body{background: #fcd661;}
+.login-body .logo h2 a{ font-weight: 700; color: #474747 !important; cursor: pointer;}
 .login-content{display: flex; display: -ms-flexbox; height: 100vh;}
 .login-box{ background: white; border-radius: 30px; margin: 0 auto; vertical-align: middle; box-shadow: 0px 0px 20px 5px #d0ae48;}
 .login-left{border-top-left-radius: 30px; border-bottom-left-radius: 30px; background-image: url(/img/login/login-left.jpg); background-size: cover; background-position-x: -15.625em;}
 .login-right{border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
-.login-right .logo h2 a{ font-weight: 700; color: #474747 !important; cursor: pointer;}
 
 .login-form-box{margin:1em;}
 
 .register{text-align: right;}
+
 .user-func-link{color: #9c9c9c; font-size: 0.7em;}
 .user-func-link:hover{opacity: 0.7;}
 .user-func-link a{vertical-align: middle;}
 .user-func-link i{vertical-align: middle;}
 .user-func-link i:before{font-size: 1.2em;}
+
+.reg-box .login-left{ background: #fff; }
+.reg-box .login-right{ background-image: url(/img/login/login-left.jpg); background-size: cover; background-position-x: 0; }
+
 /** 레이어 팝업 부분 **/
 .layer-wrap { position: fixed; background: rgba(0, 0, 0, 0.53); top: 0; left: 0; right: 0; height: 100%; z-index: 9999; }
 .layer-box { position: absolute; left: 0; right: 0; margin: 0 auto; background: #fff; width: 80%; }
@@ -133,7 +138,7 @@ body{background: #f4f4f4;}
 
     /* 로그인 */
     .login-box{width: 40em; height: 25em;}
-    .login-right .logo h2 a{ font-size: 1.5em; }
+    .login-body .logo h2 a{ font-size: 1.5em; }
 }
 
 @media all and (min-width:1025px) {
@@ -144,5 +149,5 @@ body{background: #f4f4f4;}
 
     /* 로그인 */
     .login-box{width: 55em; height: 30em;}
-    .login-right .logo h2 a{ font-size: 2em; }
+    .login-body .logo h2 a{ font-size: 2em; }
 }
