@@ -18,7 +18,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes); 
-app.use('/users', auth);
+app.use('/users', auth);  
 
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!')
