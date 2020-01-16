@@ -13,7 +13,7 @@ app.set('views', path.join(__dirname, './view'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(methodOverride('_method'));
+app.use(methodOverride('_method')); 
 
 app.use(express.static(path.join(__dirname, 'public')));
 
