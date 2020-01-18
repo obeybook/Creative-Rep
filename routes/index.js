@@ -12,7 +12,7 @@ const path = require('path');
 // const decoded_data = jwt.verify(token, 'secret_key');
 // console.log(decoded_data.sub)
 
-const storage = multer.diskStorage({
+const storage = multer.diskStorage({ 
     destination: function(req, file, cb){
         cb(null, 'public/uploads/img/');
     }, 
