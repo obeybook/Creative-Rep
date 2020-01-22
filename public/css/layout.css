@@ -46,7 +46,7 @@ body{background: #f4f4f4;}
 .login-left{border-top-left-radius: 30px; border-bottom-left-radius: 30px; background-image: url(/img/login/login-left.jpg); background-size: cover; background-position-x: -15.625em;}
 .login-right{border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
 
-.login-form-b                                                                                                                                                                                                                                                                                                                                                                               ox{margin:1em;}
+.login-form-b                                                                                                                                                                                                                                                                                                                                                                                ox{margin:1em;}
 
 .register{text-align: right;}
 
