@@ -2,14 +2,13 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 router.get('/' , function(req, res){
-    let count = 123;
-    console.log(req.cookie)
+    let count = 121233;
+    console.log(req.cookies.count)
+    console.log(req.signedCookies)
     
     res.cookie('count', count);
     res.send(`Cookie : ${count}`);
