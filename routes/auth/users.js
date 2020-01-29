@@ -12,9 +12,6 @@ console.log(token)
 const decoded_data = jwt.verify(token,'secret_key');
 console.log(decoded_data)
 
-// const token = jwt.sign({sub : 'asd1234', exp: Math.floor(Date.now() / 1000 ) + 60} , 'secret_key');
-// const decoded_data = jwt.verify(token, 'secret_key');
-// console.log(decoded_data.sub)
 router.get('/' , function(req, res){
     const requeset_token = req.body.token;
     try{
