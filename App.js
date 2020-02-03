@@ -25,24 +25,23 @@
 // app.listen(3000, function() {
 //   console.log('Example app listening on port 3000!')
 // });
-var http = require('http');
-var cookie = require('cookie');
-http.createServer(function(request, response){
-  var cookies = {};
-  if( request.headers.coookie !== undefined ){
-    cookies = cookie.parse(request.headers.cookie);
-    console.log(cookies);
-  }else{
-    console.log("fail");
-  }
-  response.writeHead(200, {
-    'Set-Cookie':[
-      'yummy_cookie=choco', 
-      'tasty_cookie=strawberry',
-      `Permanent=cookies; Max-Age=${60*60*24*30}`,
-      'Secure=Secure; Secure',
-      'HttpOnly=HttpOnly; HttpOnly'
-  ]
+
+var express = require('express')
+var parseurl = require('parseurl')
+var session = require('express-session')
+
+var app = express()
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.get('/', function (req, res, next) {
+  res.send('hello session')
+})
+
+app.listen(3000, function() {
+  console.log('Example app listening on port 3000!')
 });
-  response.end('Cookie!!');
-}).listen(3000);
