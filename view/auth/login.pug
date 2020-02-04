@@ -17,15 +17,16 @@ html
                                             span.yellow I
                                             |N
                             .col-4
-                                i.mdi.mdi-home-outline
+                                .home-icon
+                                    i.mdi.mdi-home-outline
                         .row.form-row
-                            .col-12
+                            form(action="/users/login_test" method="post").col-12
                                 .row
                                     .col-12
-                                        input(type='text' id='title' class='form-custom' placeholder="ID")
+                                        input(type='text' name="id" class='form-custom' placeholder="ID")
                                 .row
                                     .col-12
-                                        input(type='text' id='title' class='form-custom' placeholder='Password')
+                                        input(type='text' name="pw" class='form-custom' placeholder='Password')
                                 .row
                                     .col-12
                                         input(type='submit' class="button-point" value="Join!")
