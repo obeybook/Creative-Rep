@@ -5,15 +5,6 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const session = require('express-session')
-const FileStore = require('session-file-store')(session)
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  store: new FileStore() 
-}))
-
 router.get('/' , function(req, res){
     res.render('auth/login');
 });
@@ -33,14 +24,18 @@ router.post('/login_test', function(req, res){
     let _pw = post.pw;
 
     if( _id === userData.id && _pw === userData.pw){
-        // req.session.is_logined = true;
-        // req.session.id = userData.id;
-        // console.log(req.session.is_logined);
-        console.log(req.session);
+        req.session.is_logined = true;
+        req.session.nickname = userData.id;
+        res.redirect('/');
     }else{
         console.log('실패');
     }
     
 })
 
+router.get('/logout', function(req, res){
+    req.session.destroy(function(err){
+        res.redirect('/');
+    })
+});
 module.exports = router; 

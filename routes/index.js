@@ -4,6 +4,7 @@ const fs = require('fs');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const testDB = require("../lib/db.js");
+const auth = require('../routes/auth/auth.js');
 const multer = require('multer');
 const path = require('path');
 
@@ -31,7 +32,12 @@ router.get('/', function(req, res, next) {
         if(error){
             console.log(error)
         }else{
-            res.render('index', {imageList : list});
+            console.log(auth.authInfo(req, res));
+            if(auth.authInfo(req, res)){
+                res.render('index', {imageList : list, logined : auth.authInfo(req, res), authInfo : req.session.nickname});
+            }else{
+                res.render('index', {imageList : list, logined : auth.authInfo(req, res)});
+            }
             next();
         }
     });
