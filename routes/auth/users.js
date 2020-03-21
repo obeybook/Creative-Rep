@@ -26,9 +26,11 @@ router.post('/login_test', function(req, res){
     if( _id === userData.id && _pw === userData.pw){
         req.session.is_logined = true;
         req.session.nickname = userData.id;
-        res.redirect('/');
+        req.session.save(function(){
+            res.redirect('/');
+        })
     }else{
-        console.log('실패');
+        res.redirect('/');
     }
     
 })
