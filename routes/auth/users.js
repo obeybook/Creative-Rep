@@ -18,22 +18,22 @@ let userData = {
     pw : '1111'
 }
 
-router.post('/login_test', function(req, res){
-    let post = req.body;
-    let _id = post.id;
-    let _pw = post.pw;
+// router.post('/login_test', function(req, res){
+//     let post = req.body;
+//     let _id = post.id;
+//     let _pw = post.pw;
 
-    if( _id === userData.id && _pw === userData.pw){
-        req.session.is_logined = true;
-        req.session.nickname = userData.id;
-        req.session.save(function(){
-            res.redirect('/');
-        })
-    }else{
-        res.redirect('/');
-    }
+//     if( _id === userData.id && _pw === userData.pw){
+//         req.session.is_logined = true;
+//         req.session.nickname = userData.id;
+//         req.session.save(function(){
+//             res.redirect('/');
+//         })
+//     }else{
+//         res.redirect('/');
+//     }
     
-})
+// })
 
 router.get('/logout', function(req, res){
     req.session.destroy(function(err){

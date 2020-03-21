@@ -9,8 +9,8 @@ const routes = require('./routes/index.js');
 const users = require('./routes/auth/users.js');
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
-const passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+const passport = require('passport'), 
+LocalStrategy = require('passport-local').Strategy;
 
 app.use(session({
     secret: 'keyboard cat',
@@ -18,6 +18,23 @@ app.use(session({
     saveUninitialized: true,
     store: new FileStore() 
   }))
+
+  passport.use(new LocalStrategy(
+    {
+      usernameField: 'id',
+      passwordField: 'pw'
+    },
+    function(username, password,done){
+      console.log('LocalStrategy',username,password)
+    }
+  ))
+
+app.post('/users/login_test', 
+  passport.authenticate('local',{
+    successRedirect : '/',
+    failureRedirect : '/users'
+  })
+)
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './view'));  

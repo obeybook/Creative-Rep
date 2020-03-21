@@ -87,7 +87,7 @@ router.delete('/works/:id' ,function(req, res){
         try {
             fs.unlinkSync(path);
         } catch(err) {
-            console.error(err);
+            console.error(err); 
         }
         res.redirect('/');
     }); 
