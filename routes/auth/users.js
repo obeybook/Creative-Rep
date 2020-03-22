@@ -13,10 +13,6 @@ router.get('/register', function(req, res){
     res.render('auth/userManage/userRegister');
 });
 
-let userData = {
-    id : 'test',
-    pw : '1111'
-}
 
 // router.post('/login_test', function(req, res){
 //     let post = req.body;
