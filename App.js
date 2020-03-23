@@ -19,6 +19,16 @@ LocalStrategy = require('passport-local').Strategy;
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.serializeUser(function(user, done){
+  console.log('serializeUser',user);
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done){
+  console.log('deserializeUser', id);
+  done(null, userData)
+})
+
 let userData = {
   id : 'test',
   pw : '1111'
@@ -37,12 +47,9 @@ app.use(session({
       passwordField: 'pw'
     },
     function(username, password, done){
-      console.log('LocalStrategy',username,password)
       if(username === userData.id && password === userData.pw){
-        console.log('성공')
         return done(null, userData);
       } else { 
-        console.log('실패')
         return done(null, false, {
           message: '정보가 올바르지 않음'
         });
