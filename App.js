@@ -38,7 +38,10 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    store: new FileStore() 
+    store: new FileStore() ,
+    cookie:{
+      secure: false
+    }
   }))
 
   passport.use(new LocalStrategy(
@@ -48,8 +51,10 @@ app.use(session({
     },
     function(username, password, done){
       if(username === userData.id && password === userData.pw){
+        console.log("login")
         return done(null, userData);
       } else { 
+        console.log("fail")
         return done(null, false, {
           message: '정보가 올바르지 않음'
         });
