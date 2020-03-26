@@ -38,10 +38,11 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    store: new FileStore() ,
-    cookie:{
-      secure: false
-    }
+    store: new FileStore() 
+    // ,
+    // cookie:{
+    //   secure: false
+    // }
   }))
 
   passport.use(new LocalStrategy(
