@@ -32,9 +32,9 @@ router.get('/', function(req, res, next) {
         if(error){
             console.log(error)
         }else{
-            console.log('/', req.user);
+            // console.log('/', req.user.id);
             if(auth.authInfo(req, res)){
-                res.render('index', {imageList : list, logined : auth.authInfo(req, res), authInfo : req.session.nickname});
+                res.render('index', {imageList : list, logined : auth.authInfo(req, res), authInfo : req.user.id});
             }else{
                 res.render('index', {imageList : list, logined : auth.authInfo(req, res)});
             }

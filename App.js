@@ -13,6 +13,21 @@ const routes = require('./routes/index.js');
 const users = require('./routes/auth/users.js');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session)
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  store: new FileStore(),
+  cookie:{
+    secure: false
+  }
+}))
+
+let userData = {
+  id : 'test',
+  pw : '1111'
+}
 const passport = require('passport'), 
 LocalStrategy = require('passport-local').Strategy;
 
@@ -29,39 +44,23 @@ passport.deserializeUser(function(id, done){
   done(null, userData)
 })
 
-let userData = {
-  id : 'test',
-  pw : '1111'
-}
-
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    store: new FileStore() 
-    // ,
-    // cookie:{
-    //   secure: false
-    // }
-  }))
-
-  passport.use(new LocalStrategy(
-    {
-      usernameField: 'id',
-      passwordField: 'pw'
-    },
-    function(username, password, done){
-      if(username === userData.id && password === userData.pw){
-        console.log("login")
-        return done(null, userData);
-      } else { 
-        console.log("fail")
-        return done(null, false, {
-          message: '정보가 올바르지 않음'
-        });
-      }
+passport.use(new LocalStrategy(
+  {
+    usernameField: 'id',
+    passwordField: 'pw'
+  },
+  function(username, password, done){
+    if(username === userData.id && password === userData.pw){
+      console.log("login")
+      return done(null, userData);
+    } else { 
+      console.log("fail")
+      return done(null, false, {
+        message: '정보가 올바르지 않음'
+      });
     }
-  ))
+  }
+))
 
 app.post('/users/login_test', 
   passport.authenticate('local',{
