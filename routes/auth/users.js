@@ -31,14 +31,4 @@ router.get('/register', function(req, res){
     
 // })
 
-router.get('/logout', function(req, res){
-    // req.session.destroy(function(err){
-    //     req.logout();
-    //     res.redirect('/');
-    // })
-    req.logout();
-    req.session.save(function(){
-        res.redirect('/');
-    })
-});
 module.exports = router; 
