@@ -5,11 +5,14 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 
-const routes = require('./routes/index.js');
-const users = require('./routes/auth/users.js');
 const session = require('express-session');
-const compression = require('compression');
 const FileStore = require('session-file-store')(session)
+const compression = require('compression');
+const passport = require('./routes/auth/passport.js')(app);
+
+const routes = require('./routes/index.js');
+const auth = require('./routes/auth/auth.js');
+const users = require('./routes/auth/users.js');
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,14 +28,8 @@ app.use(session({
     secure: false
   }
 }))
-
-const passport = require('./routes/auth/passport.js')(app);
-
-app.post('/users/login_test', passport.authenticate('local',{
-    successRedirect : '/',
-    failureRedirect : '/users'
-  })
-)
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './view'));  
@@ -43,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes); 
 app.use('/users', users);  
+app.use('/auth', auth);  
 
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!')
