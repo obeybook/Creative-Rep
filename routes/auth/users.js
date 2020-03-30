@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
+const connection = require("../../lib/db.js");
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -13,22 +14,17 @@ router.get('/register', function(req, res){
     res.render('auth/userManage/userRegister');
 });
 
-
-// router.post('/login_test', function(req, res){
-//     let post = req.body;
-//     let _id = post.id;
-//     let _pw = post.pw;
-
-//     if( _id === userData.id && _pw === userData.pw){
-//         req.session.is_logined = true;
-//         req.session.nickname = userData.id;
-//         req.session.save(function(){
-//             res.redirect('/');
-//         })
-//     }else{
-//         res.redirect('/');
-//     }
-    
-// })
+router.post('/register', function(req, res){
+    let userReq = req.body;
+    connection.query(`INSERT INTO user_info(_id, password, name, email) VALUES(?, md5(?), ?, ?)`, 
+        [userReq.id, userReq.pwd, userReq.name, userReq.email] , 
+        function(error){
+            if(error){
+                console.log(error)
+            }else{
+                res.redirect('/');
+            }
+    })
+});
 
 module.exports = router; 

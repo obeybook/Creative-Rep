@@ -3,7 +3,7 @@ const app = express();
 const fs = require('fs');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const testDB = require("../lib/db.js");
+const connection = require("../lib/db.js");
 const auth = require('../routes/auth/auth.js');
 const multer = require('multer');
 const path = require('path');
@@ -28,16 +28,14 @@ app.use(bodyParser.json());
 
 /* 메인 */
 router.get('/', function(req, res, next) {
-    testDB.query(`SELECT * FROM imgtest ORDER BY id DESC`, function(error, list){
+    connection.query(`SELECT * FROM image_list ORDER BY _id DESC`, function(error, list){
         if(error){
             console.log(error)
         }else{
             console.log('/index', req.user);
             if(req.user){
-                console.log(true)
                 res.render('index', {imageList : list, logined : true, authInfo : req.user.id});
             }else{
-                console.log(false)
                 res.render('index', {imageList : list, logined : false});
             }
             next();
@@ -47,7 +45,7 @@ router.get('/', function(req, res, next) {
 
 /* 조회 */
 router.get('/works/:id', function(req, res, next){
-    testDB.query(`SELECT * FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
+    connection.query(`SELECT * FROM image_list WHERE _id= ?`, [req.params.id], function(error, info){
         if(error){
             console.log(error)
         }else{
@@ -72,7 +70,7 @@ router.post('/works', upload.single('userfile'), function(req, res){
         fileName : file.filename,
     };
 
-    testDB.query(`INSERT INTO imgtest (name) VALUES(?)`, [file.filename], function(error){
+    connection.query(`INSERT INTO image_list (name) VALUES(?)`, [file.filename], function(error){
         if(error){
             console.log(error)
         }else{
@@ -84,7 +82,7 @@ router.post('/works', upload.single('userfile'), function(req, res){
 /* 삭제 */ 
 router.delete('/works/:id' ,function(req, res){
     let fileName = req.body.fileName
-    testDB.query(`DELETE FROM imgtest WHERE id= ?`, [req.params.id], function(error, info){
+    connection.query(`DELETE FROM image_list WHERE _id= ?`, [req.params.id], function(error, info){
         let path = `./public/uploads/img/${fileName}`
         try {
             fs.unlinkSync(path);
