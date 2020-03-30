@@ -17,19 +17,22 @@ html
                                             |O
                         .row.form-row
                             .col-12
-                                form
+                                form(action="/users/register" method="post")
                                     .row
                                         .col-12
-                                            input(type='text' id='title' class='form-custom' placeholder="ID")
+                                            input(type='text' name='id' class='form-custom' placeholder="아이디")
                                     .row
                                         .col-12
-                                            input(type='text' id='title' class='form-custom' placeholder="E-Mail")
+                                            input(type='password' name='pwd' class='form-custom' placeholder='비밀번호')
                                     .row
                                         .col-12
-                                            input(type='text' id='title' class='form-custom' placeholder='Password')
+                                            input(type='password' name='pwdCon' class='form-custom' placeholder='비밀번호 확인')
                                     .row
                                         .col-12
-                                            input(type='text' id='title' class='form-custom' placeholder='Confirm Password')
+                                            input(type='text' name='name' class='form-custom' placeholder="닉네임")
+                                    .row
+                                        .col-12
+                                            input(type='text' name='email' class='form-custom' placeholder="이메일")
                                     .row
                                         .col-12
                                             input(type='submit' class="button-point" value="Okay!")
