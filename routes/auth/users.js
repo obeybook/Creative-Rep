@@ -3,6 +3,8 @@ const app = express();
 const router = express.Router();
 const connection = require("../../lib/db.js");
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -16,14 +18,18 @@ router.get('/register', function(req, res){
 
 router.post('/register', function(req, res){
     let userReq = req.body;
-    connection.query(`INSERT INTO user_info(_id, password, name, email) VALUES(?, md5(?), ?, ?)`, 
-        [userReq.id, userReq.pwd, userReq.name, userReq.email] , 
-        function(error){
-            if(error){
-                console.log(error)
-            }else{
-                res.redirect('/');
-            }
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(userReq.pwd, salt, function(err, hash) {
+            connection.query(`INSERT INTO user_info(_id, password, name, email) VALUES(?, ?, ?, ?)`, 
+                [userReq.id, hash, userReq.name, userReq.email] , 
+                function(error){
+                    if(error){
+                        console.log(error)
+                    }else{
+                        res.redirect('/');
+                    }
+            })
+        })
     })
 });
 

@@ -34,7 +34,7 @@ router.get('/', function(req, res, next) {
         }else{
             console.log('/index', req.user);
             if(req.user){
-                res.render('index', {imageList : list, logined : true, authInfo : req.user.id});
+                res.render('index', {imageList : list, logined : true, authInfo : req.user._id});
             }else{
                 res.render('index', {imageList : list, logined : false});
             }
