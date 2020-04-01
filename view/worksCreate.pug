@@ -10,45 +10,39 @@
                         |E
                 .col-8
                     .layer-option
-                        i(class='mdi mdi-dots-vertical' id='detail-option')
                         i(class='mdi mdi-close' id='close')
-                        .layer-option-box
-                            .option-box-row
-                                i(class='mdi mdi-delete')
-                                span 
-                            .option-box-row
-                                i(class='mdi mdi-pencil')
-                                span 
             .row.form-row
                 .col-12
-                    .row
-                        .col-12
-                            input(type='text' id='title' class='form-custom' placeholder='title')
-                    .row
-                        .col-12
-                            textarea( id='Description' class='form-custom' placeholder='description' row='45')
-                    .row
-                        .col-12
-                            .input-group
-                                input(type='text' class='form-custom' readonly)
-                                .file-box
-                                    label(for='userfile') UPLOAD
-                                    input(type="file" name="userfile" id="userfile")
-                    .row
-                        .col-12
-                            input(type='submit' class="button-point" value="Okay!")
+                    form(action="/works" method="post" enctype="multipart/form-data")
+                        .row
+                            .col-12
+                                input(type='text' id='title' name='title' class='form-custom' placeholder='title')
+                        .row
+                            .col-12
+                                textarea( id='contents' name='contents' class='form-custom' placeholder='contents' row='45')
+                        .row
+                            .col-12
+                                .input-group
+                                    input(type='text' class='form-custom' readonly)
+                                    .file-box
+                                        label(for='userfile') UPLOAD
+                                        input(type="file" id="userfile" name="userfile")
+                        .row
+                            .col-12
+                                input(type='submit' class="button-point" value="Okay!")
 
-            form(action="/works" method="post" enctype="multipart/form-data")
-                div
-                    input(type="file" name="userfile")
-                div
-                    input(type="submit")
+            //- form(action="/works" method="post" enctype="multipart/form-data")
+            //-     div
+            //-         input(type="file" name="userfile")
+            //-     div
+            //-         input(type="submit")
 
 script.
     $(document).ready(function(){
         $('#close').on('click',function(){
             $("#layer").fadeOut().html('');
         })
+
         $('#detail-option').on('click',function(){
             $('.layer-option-box').toggle(function(){
             })

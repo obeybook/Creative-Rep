@@ -15,19 +15,19 @@
                         .row
                             .col-12
                                 .profile-header.align-items-center
-                                    if logined
+                                    if isAuthenticated
                                         .profile-selfie
-                                        span.profile-name #{authInfo}
+                                        span.profile-name #{authInfo._id}
                                     else
                                         .profile-selfie
                                         span.profile-name Welcome !
                         .profile-desc
                             .row
                                 .col-12
-                                    if logined
+                                    if isAuthenticated
                                         .profile-ment 
                                             a(href='/auth/logout') logout
-                                    else
+                                    else 
                                         .profile-ment Creapo에 회원 가입하시면 더 많은 혜택과 아마 로또가 당첨될걸요?
                                             a(href='/users').yellow.signin 회원가입
 

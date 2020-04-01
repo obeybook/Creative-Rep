@@ -1,7 +1,7 @@
 .layer-box
     .detail-box.row
-        .detail-img
-            img(src=`/uploads/img/${detail[0].name}`)
+        .detail-img#image-info
+            img(src=`/uploads/img/${detail[0].img}`)
         .detail-info   
             .row
                 .col-8
@@ -19,10 +19,10 @@
                                     span 수정
             .row
                 .col-12
-                    h2.detail-title TITLE
+                    h2.detail-title #{detail[0].title}
             .row
                 .col-12
-                    .detail-description description
+                    .detail-description #{detail[0].contents}
             .row   
                 .col-12
                     .row
@@ -30,11 +30,11 @@
                             .respect-each
                                 .respect
                                     i(class='mdi mdi-emoticon-lol-outline')
-                                    span 354
+                                    span #{detail[0].respect}
                             .comment-each
                                 .comment
                                     i(class='mdi mdi-comment-outline')
-                                    span 17
+                                    span 0
 
 script.
     $(document).ready(function(){
@@ -48,13 +48,13 @@ script.
 
 
         $('#image-delete').on('click',function(){
-            var detailId = #{detail[0].id}
-            var detailName = '#{detail[0].name}'
+            var detailId = #{detail[0]._id}
+            var detailName = '#{detail[0].img}'
             $.ajax({
                 url : '/works/' + detailId + '?_method=delete',
                 type : "POST",
                 data : { 'fileName' : detailName },
-                success: function(data){
+                success: function(){
                     $("#layer").fadeOut().html('');
                     location.reload();
                 }

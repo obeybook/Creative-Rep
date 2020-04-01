@@ -15,8 +15,8 @@ html
 
                     for item in imageList
                         .grid-item
-                            div(id='datail' class='grid-image')
-                                img(src=`/uploads/img/${item.name}` id=`${item.id}`)
+                            div(class='grid-image')
+                                img(src=`/uploads/img/${item.img}` id=`${item._id}`)
                     .grid-item.box-text#create
                         p 
                             a(href='#' id='create') CREATE
@@ -63,18 +63,22 @@ html
 
             //- 생성팝업
             $('#create').on('click',function(){
-                $.ajax({
-                    url : "/works",
-                    type : "GET",
-                    success: function(data){
-                        $('#layer').html(data).fadeIn()
-                        layerAutoSet()
-                    }
-                })
+                if(#{isAuthenticated}){
+                    $.ajax({
+                        url : "/works",
+                        type : "GET",
+                        success: function(data){
+                            $('#layer').html(data).fadeIn()
+                            layerAutoSet()
+                        }
+                    })
+                }else{
+                    alert("로그인 후 이용해주세요.")
+                }
             })
 
             //- 조회팝업
-            $('#datail img').on('click',function(){
+            $('.grid-image img').on('click',function(){
                 var selectImg = $(this).attr('id')
                 $.ajax({
                     url : '/works/'+selectImg,
