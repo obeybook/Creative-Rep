@@ -6,19 +6,14 @@ module.exports = function (app) {
     
     app.use(passport.initialize());
     app.use(passport.session());
-
-    // let userData = {
-    //   id : 'test',
-    //   pw : '1111'
-    // }
     
     passport.serializeUser(function(user, done){
-        console.log('serializeUser',user);
+        // console.log('serializeUser',user);
         done(null, user);
     });
     
     passport.deserializeUser(function(id, done){
-        console.log('deserializeUser', id);
+        // console.log('deserializeUser', id);
         done(null, id)
     })
   

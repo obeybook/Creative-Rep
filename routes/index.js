@@ -32,11 +32,17 @@ router.get('/', function(req, res, next) {
         if(error){
             console.log(error)
         }else{
-            console.log('/index', req.user);
-            if(req.user){
-                res.render('index', {imageList : list, logined : true, authInfo : req.user._id});
+            if(req.isAuthenticated()){
+                res.render('index', {
+                    imageList : list, 
+                    isAuthenticated : req.isAuthenticated(), 
+                    authInfo : req.user
+                });
             }else{
-                res.render('index', {imageList : list, logined : false});
+                res.render('index', {
+                    imageList : list,
+                    isAuthenticated : req.isAuthenticated()
+                });
             }
             next();
         }
@@ -45,11 +51,21 @@ router.get('/', function(req, res, next) {
 
 /* 조회 */
 router.get('/works/:id', function(req, res, next){
-    connection.query(`SELECT * FROM image_list WHERE _id= ?`, [req.params.id], function(error, info){
+    connection.query(`SELECT * FROM image_list WHERE _id=?`, [req.params.id], function(error, info){
         if(error){
             console.log(error)
         }else{
-            res.render('worksDetail', {detail: info});
+            if(req.isAuthenticated()){
+                res.render('worksDetail', {
+                    detail: info,                     
+                    isAuthenticated : req.isAuthenticated(), 
+                    authInfo : req.user
+                });
+            }else{
+                res.render('worksDetail', {
+                    detail: info
+                });
+            }
             next();
         }
     });
@@ -57,20 +73,29 @@ router.get('/works/:id', function(req, res, next){
 
 /* 생성페이지 이동 */
 router.get('/works', function(req, res, next) {
-    res.render('worksCreate');
+    if(req.isAuthenticated()){
+        res.render('worksCreate', {             
+            isAuthenticated : req.isAuthenticated(), 
+            authInfo : req.user
+        });
+    }else{
+        res.render('worksCreate');
+    }
     next();
 });
 
 /* 생성 */
 router.post('/works', upload.single('userfile'), function(req, res){
+    // let result = {
+    //     originalName : file.originalname,
+    //     size : file.size,
+    //     fileName : file.filename,
+    // };
     let file = req.file;
-    let result = {
-        originalName : file.originalname,
-        size : file.size,
-        fileName : file.filename,
-    };
+    let userReq = req.body;
 
-    connection.query(`INSERT INTO image_list (name) VALUES(?)`, [file.filename], function(error){
+    connection.query(`INSERT INTO image_list (title, contents, img, own, respect) VALUES(?, ?, ?, ?, ?)`, 
+        [userReq.title, userReq.contents, file.filename, req.user._id, 0], function(error){
         if(error){
             console.log(error)
         }else{
@@ -89,9 +114,7 @@ router.delete('/works/:id' ,function(req, res){
         } catch(err) {
             console.error(err); 
         }
-        res.redirect('/');
     }); 
-
 });
 /* 수정 */ 
 // router.put('/works/:id' ,function(req, res){
