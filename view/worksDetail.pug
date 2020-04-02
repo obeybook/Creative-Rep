@@ -14,7 +14,7 @@
                                 .option-box-row#image-delete
                                     i(class='mdi mdi-delete')
                                     span 삭제
-                                .option-box-row
+                                .option-box-row#image-update
                                     i(class='mdi mdi-pencil')
                                     span 수정
             .row
@@ -38,6 +38,13 @@
 
 script.
     $(document).ready(function(){
+        function layerAutoSet(){
+            var browserHeight = window.innerHeight;
+            var layerHeight = $('.layer-box').height();
+            var layerTop = ( browserHeight - layerHeight ) / 2;
+            $('.layer-box').css('top',layerTop);
+        }
+
         $('#close').on('click',function(){
             $("#layer").fadeOut().html('');
         })
@@ -46,17 +53,34 @@ script.
             })
         })
 
+        var detailId = #{detail[0]._id}
+        var detailName = '#{detail[0].img}'
 
         $('#image-delete').on('click',function(){
-            var detailId = #{detail[0]._id}
-            var detailName = '#{detail[0].img}'
             $.ajax({
                 url : '/works/' + detailId + '?_method=delete',
                 type : "POST",
+                dataType : 'json',
                 data : { 'fileName' : detailName },
-                success: function(){
+                success: function(data){
                     $("#layer").fadeOut().html('');
-                    location.reload();
+                    //- location.reload();
+                },error: function(req, status, error){
+                    console.log(req);
+                    console.log(status);
+                    console.log(error);
+                }
+            })
+        })
+
+        $('#image-update').on('click',function(){
+            $("#layer").fadeOut().html('');
+            $.ajax({
+                url : '/works/' + detailId + '?_method=put',
+                type : "PUT",
+                success: function(data){
+                    $('#layer').html(data).fadeIn()
+                    layerAutoSet()
                 }
             })
         })

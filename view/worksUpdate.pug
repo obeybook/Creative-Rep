@@ -1,29 +1,62 @@
 .layer-box
     .detail-box.row
-        .detail-img
-            img(src=`/uploads/img/${detail[0].name}`)
+        .detail-img#image-info
+            img(src=`/uploads/img/${detail[0].img}`)
         .detail-info   
-            .row
-                .col-8
-                    .detail-user-profile
-                .col-4
-                    .layer-option
-                        i(class='mdi mdi-close' id='close')
-            .row
-                .col-12
-                    h2.detail-title TITLE
-            .row
-                .col-12
-                    .detail-description description
-            .row   
-                .col-12
-                    .row
-                        .col-12
-                            .respect-each
-                                .respect
-                                    i(class='mdi mdi-emoticon-lol-outline')
-                                    span 354
-                            .comment-each
-                                .comment
-                                    i(class='mdi mdi-comment-outline')
-                                    span 17
+            form(action="/works" method="post" enctype="multipart/form-data")
+                .row
+                    .col-8
+                        .detail-user-profile
+                    .col-4
+                        .layer-option
+                            i(class='mdi mdi-dots-vertical' id='update-cancel')
+                            i(class='mdi mdi-close' id='close')
+                .row
+                    .col-12
+                        input(type='text' id='title' name='title' class='form-custom' value='#{detail[0].title}')
+                .row
+                    .col-12
+                        textarea( id='contents' name='contents' class='form-custom' value='#{detail[0].contents}' row='45')
+                        //- .detail-description 
+                .row   
+                    .col-12
+                        .row
+                            .col-12
+                                .respect-each
+                                    .respect
+                                        i(class='mdi mdi-emoticon-lol-outline')
+                                        span #{detail[0].respect}
+                                .comment-each
+                                    .comment
+                                        i(class='mdi mdi-comment-outline')
+                                        span 0
+
+script.
+    $(document).ready(function(){
+        $('#close').on('click',function(){
+            $("#layer").fadeOut().html('');
+        })
+        $('#detail-option').on('click',function(){
+            $('.layer-option-box').toggle(function(){
+            })
+        })
+
+        $('#image-delete').on('click',function(){
+            var detailId = #{detail[0]._id}
+            var detailName = '#{detail[0].img}'
+            $.ajax({
+                url : '/works/' + detailId + '?_method=delete',
+                type : "POST",
+                dataType : 'json',
+                data : { 'fileName' : detailName },
+                success: function(data){
+                    $("#layer").fadeOut().html('');
+                    //- location.reload();
+                },error: function(req, status, error){
+                    console.log(req);
+                    console.log(status);
+                    console.log(error);
+                }
+            })
+        })
+    })

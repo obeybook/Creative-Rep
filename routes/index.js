@@ -111,14 +111,35 @@ router.delete('/works/:id' ,function(req, res){
         let path = `./public/uploads/img/${fileName}`
         try {
             fs.unlinkSync(path);
+            console.log(path); 
         } catch(err) {
-            console.error(err); 
+            console.log(err); 
         }
     }); 
 });
+
 /* 수정 */ 
-// router.put('/works/:id' ,function(req, res){
-// });
+router.put('/works/:id' ,function(req, res){
+    connection.query(`SELECT * FROM image_list WHERE _id=?`, [req.params.id], function(error, info){
+        if(error){
+            console.log(error)
+        }else{
+            if(req.isAuthenticated()){
+                res.render('worksUpdate', {
+                    detail: info,                     
+                    isAuthenticated : req.isAuthenticated(), 
+                    authInfo : req.user
+                });
+            }else{
+                res.render('worksUpdate', {
+                    detail: info
+                });
+            }
+            // next();
+        }
+    });
+    console.log('put')
+});
 
 // router.post('/create_process', function(req, res, next) {
 //     var post = req.body;
