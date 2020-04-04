@@ -2,34 +2,35 @@
     .detail-box.row
         .detail-img#image-info
             img(src=`/uploads/img/${detail[0].img}`)
-        .detail-info   
-            form(action="/works" method="post" enctype="multipart/form-data")
-                .row
-                    .col-8
-                        .detail-user-profile
-                    .col-4
-                        .layer-option
-                            i(class='mdi mdi-dots-vertical' id='update-cancel')
+        .layer-content
+            .row.layer-border-bottom
+                .col-4
+                    h2 UPDA
+                        span.yellow T
+                        |E
+                .col-8
+                    .layer-option
+                            i(class='mdi mdi-keyboard-backspace' id='update-cancel')
                             i(class='mdi mdi-close' id='close')
-                .row
-                    .col-12
-                        input(type='text' id='title' name='title' class='form-custom' value='#{detail[0].title}')
-                .row
-                    .col-12
-                        textarea( id='contents' name='contents' class='form-custom' value='#{detail[0].contents}' row='45')
-                        //- .detail-description 
-                .row   
-                    .col-12
+            .row.form-row
+                .col-12
+                    form(action="/works" method="post" enctype="multipart/form-data")
                         .row
                             .col-12
-                                .respect-each
-                                    .respect
-                                        i(class='mdi mdi-emoticon-lol-outline')
-                                        span #{detail[0].respect}
-                                .comment-each
-                                    .comment
-                                        i(class='mdi mdi-comment-outline')
-                                        span 0
+                                input(type='text' id='title' name='title' class='form-custom' value=`${detail[0].title}`)
+                        .row
+                            .col-12
+                                textarea( id='contents' name='contents' class='form-custom' value=`${detail[0].contents}` row='45') #{detail[0].contents}
+                        .row
+                            .col-12
+                                .input-group
+                                    input(type='text' class='form-custom' readonly)
+                                    .file-box
+                                        label(for='userfile') UPLOAD
+                                        input(type="file" id="userfile" name="userfile")
+                        .row
+                            .col-12
+                                input(type='submit' class="button-point" value="Okay!")
 
 script.
     $(document).ready(function(){
@@ -53,9 +54,6 @@ script.
                     $("#layer").fadeOut().html('');
                     //- location.reload();
                 },error: function(req, status, error){
-                    console.log(req);
-                    console.log(status);
-                    console.log(error);
                 }
             })
         })

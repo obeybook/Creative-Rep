@@ -138,7 +138,6 @@ router.put('/works/:id' ,function(req, res){
             // next();
         }
     });
-    console.log('put')
 });
 
 // router.post('/create_process', function(req, res, next) {
