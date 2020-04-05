@@ -118,8 +118,8 @@ router.delete('/works/:id' ,function(req, res){
     }); 
 });
 
-/* 수정 */ 
-router.put('/works/:id' ,function(req, res){
+/* 수정 페이지 이동*/ 
+router.get('/works/update/:id' ,function(req, res){
     connection.query(`SELECT * FROM image_list WHERE _id=?`, [req.params.id], function(error, info){
         if(error){
             console.log(error)
@@ -138,18 +138,23 @@ router.put('/works/:id' ,function(req, res){
             // next();
         }
     });
-});
+}); 
 
-// router.post('/create_process', function(req, res, next) {
-//     var post = req.body;
-//     testDB.query(`INSERT INTO maintest (text) VALUES(?)`, [post.text], function(error){
-         
-//     });
-//     res.redirect('/');
-//     next();
-// });
+/* 수정 */
+router.put('/works/update', upload.single('userfile') ,function(req, res){
 
+    let file = req.file;
+    let userReq = req.body;
 
-    
+    connection.query(`UPDATE image_list SET title = ?, contents = ?, updated = NOW() WHERE _id=?`,
+     [userReq.title, userReq.contents,  req.params.id], function(error, info){
+        if(error){
+            console.log(error)
+        }else{ 
+            console.log(req.params.id)
+            res.redirect('/');
+        }
+    });
+}); 
 
 module.exports = router; 
