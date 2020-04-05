@@ -8,15 +8,18 @@
                     .detail-user-profile
                 .col-4
                     .layer-option
-                        i(class='mdi mdi-dots-vertical' id='detail-option')
-                        i(class='mdi mdi-close' id='close')
-                        .layer-option-box
-                                .option-box-row#image-delete
-                                    i(class='mdi mdi-delete')
-                                    span 삭제
-                                .option-box-row#image-update
-                                    i(class='mdi mdi-pencil')
-                                    span 수정
+                        if isAuthenticated
+                            i(class='mdi mdi-dots-vertical' id='detail-option')
+                            i(class='mdi mdi-close' id='close')
+                            .layer-option-box
+                                    .option-box-row#image-delete
+                                        i(class='mdi mdi-delete')
+                                        span 삭제
+                                    .option-box-row#image-update
+                                        i(class='mdi mdi-pencil')
+                                        span 수정
+                        else
+                            i(class='mdi mdi-close' id='close')
             .row
                 .col-12
                     h2.detail-title #{detail[0].title}
@@ -76,8 +79,8 @@ script.
         $('#image-update').on('click',function(){
             $("#layer").fadeOut().html('');
             $.ajax({
-                url : '/works/' + detailId + '?_method=put',
-                type : "PUT",
+                url : '/works/update/' + detailId,
+                type : "GET",
                 success: function(data){
                     $('#layer').html(data).fadeIn()
                     layerAutoSet()
