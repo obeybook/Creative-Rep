@@ -14,9 +14,10 @@
                             i(class='mdi mdi-close' id='close')
             .row.form-row
                 .col-12
-                    form(action="/works/update?_method=put" method="POST" enctype="multipart/form-data")
+                    form(action="/works/update/?_method=put" method="POST" enctype="multipart/form-data")
                         .row
                             .col-12
+                                input(type='hidden' name='id' value=`${detail[0]._id}`)
                                 input(type='text' id='title' name='title' class='form-custom' value=`${detail[0].title}`)
                         .row
                             .col-12

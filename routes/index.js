@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 /* 메인 */
 router.get('/', function(req, res, next) {
-    connection.query(`SELECT * FROM image_list ORDER BY _id DESC`, function(error, list){
+    connection.query(`SELECT * FROM IMAGE_LIST ORDER BY _id DESC`, function(error, list){
         if(error){
             console.log(error)
         }else{
@@ -50,8 +50,9 @@ router.get('/', function(req, res, next) {
 });
 
 /* 조회 */
-router.get('/works/:id', function(req, res, next){
-    connection.query(`SELECT * FROM image_list WHERE _id=?`, [req.params.id], function(error, info){
+router.get('/works/:id',upload.single('userfile'), function(req, res, next){
+    let file = req.file;
+    connection.query(`SELECT * FROM IMAGE_LIST WHERE _id=?`, [req.params.id], function(error, info){
         if(error){
             console.log(error)
         }else{
@@ -61,6 +62,7 @@ router.get('/works/:id', function(req, res, next){
                     isAuthenticated : req.isAuthenticated(), 
                     authInfo : req.user
                 });
+                console.log(file)
             }else{
                 res.render('worksDetail', {
                     detail: info
@@ -94,8 +96,8 @@ router.post('/works', upload.single('userfile'), function(req, res){
     let file = req.file;
     let userReq = req.body;
 
-    connection.query(`INSERT INTO image_list (title, contents, img, own, respect) VALUES(?, ?, ?, ?, ?)`, 
-        [userReq.title, userReq.contents, file.filename, req.user._id, 0], function(error){
+    connection.query(`INSERT INTO IMAGE_LIST (title, contents, img, img_fn, own) VALUES(?, ?, ?, ?, ?)`, 
+        [userReq.title, userReq.contents, file.filename, file.originalname, req.user._id], function(error){
         if(error){
             console.log(error)
         }else{
@@ -107,7 +109,7 @@ router.post('/works', upload.single('userfile'), function(req, res){
 /* 삭제 */ 
 router.delete('/works/:id' ,function(req, res){
     let fileName = req.body.fileName
-    connection.query(`DELETE FROM image_list WHERE _id= ?`, [req.params.id], function(error, info){
+    connection.query(`DELETE FROM IMAGE_LIST WHERE _id= ?`, [req.params.id], function(error, info){
         let path = `./public/uploads/img/${fileName}`
         try {
             fs.unlinkSync(path);
@@ -120,7 +122,7 @@ router.delete('/works/:id' ,function(req, res){
 
 /* 수정 페이지 이동*/ 
 router.get('/works/update/:id' ,function(req, res){
-    connection.query(`SELECT * FROM image_list WHERE _id=?`, [req.params.id], function(error, info){
+    connection.query(`SELECT * FROM IMAGE_LIST WHERE _id=?`, [req.params.id], function(error, info){
         if(error){
             console.log(error)
         }else{
@@ -145,9 +147,9 @@ router.put('/works/update', upload.single('userfile') ,function(req, res){
 
     let file = req.file;
     let userReq = req.body;
-
-    connection.query(`UPDATE image_list SET title = ?, contents = ?, updated = NOW() WHERE _id=?`,
-     [userReq.title, userReq.contents,  req.params.id], function(error, info){
+    console.log(req.body)
+    connection.query(`UPDATE IMAGE_LIST SET title = ?, contents = ?, img = ?, updated = NOW() WHERE _id=?`,
+     [userReq.title, userReq.contents, file.filename, userReq.id], function(error, info){
         if(error){
             console.log(error)
         }else{ 
