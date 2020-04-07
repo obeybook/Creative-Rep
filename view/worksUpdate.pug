@@ -17,7 +17,6 @@
                     form(action="/works/update/?_method=put" method="POST" enctype="multipart/form-data")
                         .row
                             .col-12
-                                input(type='hidden' name='id' value=`${detail[0]._id}`)
                                 input(type='text' id='title' name='title' class='form-custom' value=`${detail[0].title}`)
                         .row
                             .col-12
@@ -31,6 +30,8 @@
                                         input(type="file" id="userfile" name="userfile")
                         .row
                             .col-12
+                                input(type='hidden' name='id' value=`${detail[0]._id}`)
+                                input(type='hidden' name='filename' value=`${detail[0].img}`)
                                 input(type='submit' class="button-point" value="Okay!")
 
 script.

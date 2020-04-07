@@ -144,19 +144,30 @@ router.get('/works/update/:id' ,function(req, res){
 
 /* 수정 */
 router.put('/works/update', upload.single('userfile') ,function(req, res){
-
     let file = req.file;
     let userReq = req.body;
-    console.log(req.body)
-    connection.query(`UPDATE IMAGE_LIST SET title = ?, contents = ?, img = ?, updated = NOW() WHERE _id=?`,
-     [userReq.title, userReq.contents, file.filename, userReq.id], function(error, info){
-        if(error){
-            console.log(error)
-        }else{ 
-            console.log(req.params.id)
-            res.redirect('/');
-        }
-    });
+    let path = `./public/uploads/img/${userReq.filename}`;
+
+    if( file === undefined ){
+        connection.query(`UPDATE IMAGE_LIST SET title = ?, contents = ?, updated = NOW() WHERE _id=?`,
+         [userReq.title, userReq.contents, userReq.id], function(error, info){
+            if(error){
+                console.log(error)
+            }else{
+                res.redirect('/');
+            }
+        });
+    }else{
+        connection.query(`UPDATE IMAGE_LIST SET title = ?, contents = ?, img = ?, img_fn = ?, updated = NOW() WHERE _id=?`,
+         [userReq.title, userReq.contents, file.filename, file.originalname, userReq.id], function(error, info){
+            if(error){
+                console.log(error)
+            }else{
+                fs.unlinkSync(path);
+                res.redirect('/');
+            }
+        });
+    }
 }); 
 
 module.exports = router; 

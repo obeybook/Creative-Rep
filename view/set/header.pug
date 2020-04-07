@@ -17,7 +17,7 @@
                                 .profile-header.align-items-center
                                     if isAuthenticated
                                         .profile-selfie
-                                        span.profile-name #{authInfo._id}
+                                        span.profile-name #{authInfo.name}
                                     else
                                         .profile-selfie
                                         span.profile-name Welcome !
@@ -29,7 +29,7 @@
                                             a(href='/auth/logout') logout
                                     else 
                                         .profile-ment Creapo에 회원 가입하시면 더 많은 혜택과 아마 로또가 당첨될걸요?
-                                            a(href='/users').yellow.signin 회원가입
+                                            a(href='/users').yellow.signin 로그인  회원가입
 
 script.
     $(".header-user-info .account").on("click", function(){
