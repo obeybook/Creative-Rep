@@ -38,6 +38,8 @@
                                 .comment
                                     i(class='mdi mdi-comment-outline')
                                     span 0
+            input(type="hidden" id="detail-img" value=`${detail[0].img}`)
+            input(type="hidden" id="detail-id" value=`${detail[0]._id}`)
 
 script.
     $(document).ready(function(){
@@ -55,21 +57,20 @@ script.
             $('.layer-option-box').toggle(function(){
             })
         })
+        var detailId = $("#detail-id").val();
+        var detailName = $("#detail-img").val();
 
-        var detailId = #{detail[0]._id}
-        var detailName = '#{detail[0].img}'
+        //- var detailId = #{detail[0]._id}
+        //- var detailName = '#{detail[0].img}'
 
         $('#image-delete').on('click',function(){
             $.ajax({
                 url : '/works/' + detailId + '?_method=delete',
                 type : "POST",
-                dataType : 'json',
-                data : { 'fileName' : detailName },
                 success: function(data){
                     $("#layer").fadeOut().html('');
                     //- location.reload();
                 },error: function(req, status, error){
-                    console.log(req);
                     console.log(status);
                     console.log(error);
                 }
@@ -80,7 +81,7 @@ script.
             $("#layer").fadeOut().html('');
             $.ajax({
                 url : '/works/update/' + detailId,
-                type : "DELETE",
+                type : "GET",
                 success: function(data){
                     $('#layer').html(data).fadeIn()
                     layerAutoSet()

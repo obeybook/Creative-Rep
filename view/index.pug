@@ -23,70 +23,69 @@ html
                     .grid-item.box-text#design
                         p 
                             a(href='works') DESIGN
-        .test(style='display:none')
         .layer-wrap#layer(style='display:none')
     
-    script.
-        $(document).ready(function(){
-            //- 카테고리 박스 위치 지정
-            $('#create').insertAfter('.grid-item:nth-child(2)');
-            $('#design').insertAfter('.grid-item:nth-child(8)');
+        script.
+            $(document).ready(function(){
+                //- 카테고리 박스 위치 지정
+                $('#create').insertAfter('.grid-item:nth-child(2)');
+                $('#design').insertAfter('.grid-item:nth-child(8)');
 
-            //- 카데고리 박스 높이 설정
-            function categoryBoxHeight(){
-                var w = $('.box-text').width();
-                $('.box-text').css('height',w);
-            }
+                //- 카데고리 박스 높이 설정
+                function categoryBoxHeight(){
+                    var w = $('.box-text').width();
+                    $('.box-text').css('height',w);
+                }
 
-            categoryBoxHeight();
-
-            $(window).resize(function(){
                 categoryBoxHeight();
-            })
 
-            //- 이미지 그리드 배치
-            setTimeout(function(){
-                var _grid = $('.grid').masonry({
-                    itemSelector: '.grid-item',
-                    percentPosition: true,
-                    columnWidth: '.grid-sizer'
-                });
-            },50)
+                $(window).resize(function(){
+                    categoryBoxHeight();
+                })
 
-            //- 레이어 팝업 가운데 배치
-            function layerAutoSet(){
-                var browserHeight = window.innerHeight;
-                var layerHeight = $('.layer-box').height();
-                var layerTop = ( browserHeight - layerHeight ) / 2;
-                $('.layer-box').css('top',layerTop);
-            }
+                //- 이미지 그리드 배치
+                setTimeout(function(){
+                    var _grid = $('.grid').masonry({
+                        itemSelector: '.grid-item',
+                        percentPosition: true,
+                        columnWidth: '.grid-sizer'
+                    });
+                },50)
 
-            //- 생성팝업
-            $('#create').on('click',function(){
-                if(#{isAuthenticated}){
+                //- 레이어 팝업 가운데 배치
+                function layerAutoSet(){
+                    var browserHeight = window.innerHeight;
+                    var layerHeight = $('.layer-box').height();
+                    var layerTop = ( browserHeight - layerHeight ) / 2;
+                    $('.layer-box').css('top',layerTop);
+                }
+
+                //- 생성팝업
+                $('#create').on('click',function(){
+                    if(#{isAuthenticated}){
+                        $.ajax({
+                            url : "/works",
+                            type : "GET",
+                            success: function(data){
+                                $('#layer').html(data).fadeIn()
+                                layerAutoSet()
+                            }
+                        })
+                    }else{
+                        alert("로그인 후 이용해주세요.")
+                    }
+                })
+
+                //- 조회팝업
+                $('.grid-image img').on('click',function(){
+                    var selectImg = $(this).attr('id')
                     $.ajax({
-                        url : "/works",
+                        url : '/works/'+selectImg,
                         type : "GET",
                         success: function(data){
                             $('#layer').html(data).fadeIn()
                             layerAutoSet()
                         }
                     })
-                }else{
-                    alert("로그인 후 이용해주세요.")
-                }
-            })
-
-            //- 조회팝업
-            $('.grid-image img').on('click',function(){
-                var selectImg = $(this).attr('id')
-                $.ajax({
-                    url : '/works/'+selectImg,
-                    type : "GET",
-                    success: function(data){
-                        $('#layer').html(data).fadeIn()
-                        layerAutoSet()
-                    }
                 })
             })
-        })
