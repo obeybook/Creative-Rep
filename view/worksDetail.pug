@@ -80,7 +80,7 @@ script.
             $("#layer").fadeOut().html('');
             $.ajax({
                 url : '/works/update/' + detailId,
-                type : "GET",
+                type : "DELETE",
                 success: function(data){
                     $('#layer').html(data).fadeIn()
                     layerAutoSet()
