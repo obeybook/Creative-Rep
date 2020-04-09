@@ -1,12 +1,26 @@
 module.exports = function (app) {
     const connection = require("../../lib/db.js");
     const bcrypt = require('bcrypt');
+    const session = require('express-session');
+    const FileStore = require('session-file-store')(session)
+    const compression = require('compression');
     const passport = require('passport'), 
     LocalStrategy = require('passport-local').Strategy;
     
     app.use(passport.initialize());
     app.use(passport.session());
     
+    app.use(compression());
+    app.use(session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: true,
+        store: new FileStore(),
+        cookie:{
+            secure: false
+        }
+    }))
+
     passport.serializeUser(function(user, done){
         // console.log('serializeUser',user);
         done(null, user);

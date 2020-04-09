@@ -7,6 +7,8 @@ const connection = require("../lib/db.js");
 const auth = require('../routes/auth/auth.js');
 const multer = require('multer');
 const path = require('path');
+const cors = require('cors');
+app.use(cors())
 
 const storage = multer.diskStorage({ 
     destination: function(req, file, cb){
@@ -109,15 +111,16 @@ router.post('/works', upload.single('userfile'), function(req, res){
 /* 삭제 */ 
 router.delete('/works/:id' ,function(req, res){
     let fileName = req.body.fileName
-    connection.query(`DELETE FROM IMAGE_LIST WHERE _id= ?`, [req.params.id], function(error, info){
-        let path = `./public/uploads/img/${fileName}`
-        try {
-            fs.unlinkSync(path);
-            console.log(path); 
-        } catch(err) {
-            console.log(err); 
-        }
-    }); 
+    console.log(req.body)
+    // connection.query(`DELETE FROM IMAGE_LIST WHERE _id= ?`, [req.params.id], function(error, info){
+    //     let path = `./public/uploads/img/${fileName}`
+    //     try {
+    //         fs.unlinkSync(path);
+    //         console.log(path); 
+    //     } catch(err) {
+    //         console.log(err); 
+    //     }
+    // }); 
 });
 
 /* 수정 페이지 이동*/ 
