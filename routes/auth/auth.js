@@ -9,7 +9,8 @@ const passport = require('./passport.js')(app);
 
 router.post('/login', passport.authenticate('local',{
     successRedirect : '/',
-    failureRedirect : '/users'
+    failureRedirect : '/users',
+    failureFlash : true
   })
 )
 

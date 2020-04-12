@@ -9,7 +9,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 router.get('/' , function(req, res){
-    res.render('auth/login');
+    let fmsg = req.flash();
+    console.log(fmsg.error)
+    if(fmsg.error){
+        res.render('auth/login',{
+            loginStatus : 'passwordFail'
+        });
+    }else{
+        res.render('auth/login');
+    }
 });
 
 router.get('/register', function(req, res){

@@ -6,7 +6,8 @@ module.exports = function (app) {
     const compression = require('compression');
     const passport = require('passport'), 
     LocalStrategy = require('passport-local').Strategy;
-    
+    const flash = require('connect-flash');
+
     app.use(passport.initialize());
     app.use(passport.session());
     
@@ -20,6 +21,7 @@ module.exports = function (app) {
             secure: false
         }
     }))
+    app.use(flash());
 
     passport.serializeUser(function(user, done){
         // console.log('serializeUser',user);
@@ -42,10 +44,14 @@ module.exports = function (app) {
                     console.log(error);
                 }else{
                     if(result.length === 0){
-                        console.log('존재하지 않는 아이디입니다.');
+                        return done(null, false, {
+                            message : '존재하지 않는 아이디 입니다.'
+                        })
                     }else {
                         if( !bcrypt.compareSync(password, result[0].password) ){
-                            console.log('비밀번호가 일치하지 않습니다.');
+                            return done(null, false, {
+                                message : '비밀번호가 일치하지 않습니다.'
+                            })
                         }else{
                             return done(null, result[0]);
                         }
