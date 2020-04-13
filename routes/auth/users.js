@@ -13,7 +13,7 @@ router.get('/' , function(req, res){
     console.log(fmsg.error)
     if(fmsg.error){
         res.render('auth/login',{
-            loginStatus : 'passwordFail'
+            loginStatus : fmsg.error
         });
     }else{
         res.render('auth/login');

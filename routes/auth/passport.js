@@ -1,8 +1,9 @@
 module.exports = function (app) {
     const connection = require("../../lib/db.js");
+    const sessionDB = require("../../lib/sessionDB.js");
     const bcrypt = require('bcrypt');
     const session = require('express-session');
-    const FileStore = require('session-file-store')(session)
+    const MySQLStore = require('express-mysql-session')(session);
     const compression = require('compression');
     const passport = require('passport'), 
     LocalStrategy = require('passport-local').Strategy;
@@ -16,6 +17,7 @@ module.exports = function (app) {
         secret: 'keyboard cat',
         resave: false,
         saveUninitialized: true,
+        store : new MySQLStore(sessionDB),
         // store: new FileStore(),
         cookie:{
             secure: false
