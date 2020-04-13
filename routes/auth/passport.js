@@ -16,7 +16,7 @@ module.exports = function (app) {
         secret: 'keyboard cat',
         resave: false,
         saveUninitialized: true,
-        store: new FileStore(),
+        // store: new FileStore(),
         cookie:{
             secure: false
         }

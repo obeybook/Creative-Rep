@@ -71,13 +71,9 @@ script.
                 data : { 'fileName' : detailName },
                 success: function(data){
                     $("#layer").fadeOut().html('');
-                    console.log('success');
-                    //- location.reload();
+                    location.reload();
                 },error: function(req, status, error){
                     console.log(error);
-                    console.log(status);
-                    console.log(req.status);
-                    console.log(req.responseText);
                 }
             })
         })

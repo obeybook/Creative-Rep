@@ -109,18 +109,17 @@ router.post('/works', upload.single('userfile'), function(req, res){
   });
 
 /* 삭제 */ 
-router.delete('/works/:id' ,function(req, res){
-    let fileName = req.body.fileName
-    console.log(req.body)
-    // connection.query(`DELETE FROM IMAGE_LIST WHERE _id= ?`, [req.params.id], function(error, info){
-    //     let path = `./public/uploads/img/${fileName}`
-    //     try {
-    //         fs.unlinkSync(path);
-    //         console.log(path); 
-    //     } catch(err) {
-    //         console.log(err); 
-    //     }
-    // }); 
+router.delete('/works/:id', cors() ,function(req, res){
+    let fileName = req.body.fileName;
+    connection.query(`DELETE FROM IMAGE_LIST WHERE _id= ?`, [req.params.id], function(error, info){
+        let path = `./public/uploads/img/${fileName}`
+        try {
+            fs.unlinkSync(path);
+            res.redirect('/');
+        } catch(err) {
+            console.log(err); 
+        }
+    }); 
 });
 
 /* 수정 페이지 이동*/ 
