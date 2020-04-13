@@ -48,6 +48,9 @@ body{background: #f4f4f4;}
 
 .login-form-box{padding:1.3rem;}
 
+.login-fail-msg-box{height:16px;}
+.login-fail-msg{ color: #ff2d74; font-size: 0.7rem;}
+
 .register{text-align: right;}
 
 .user-func-link{color: #9c9c9c; font-size: 0.7em;}
