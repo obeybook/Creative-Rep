@@ -4,7 +4,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
-
 const passport = require('./routes/auth/passport.js')(app);
 
 const routes = require('./routes/index.js');

@@ -3,10 +3,12 @@ const app = express();
 const fs = require('fs');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const connection = require("../lib/db.js");
-const auth = require('../routes/auth/auth.js');
 const multer = require('multer');
 const path = require('path');
+const { check, validationResult } = require('express-validator');
+
+const connection = require("../lib/db.js");
+const auth = require('../routes/auth/auth.js');
 
 const storage = multer.diskStorage({ 
     destination: function(req, file, cb){
@@ -87,12 +89,15 @@ router.get('/works', function(req, res, next) {
 });
 
 /* 생성 */
-router.post('/works', upload.single('userfile'), function(req, res){
+router.post('/works', [check('title').isLength({min : 5})], upload.single('userfile'), function(req, res){
     // let result = {
     //     originalName : file.originalname,
     //     size : file.size,
     //     fileName : file.filename,
     // };
+    const errors = validationResult(req);
+    console.log(errors)
+    
     let file = req.file;
     let userReq = req.body;
 
