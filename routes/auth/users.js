@@ -10,10 +10,11 @@ app.use(bodyParser.json());
 
 router.get('/' , function(req, res){
     let fmsg = req.flash();
-    console.log(fmsg.error)
+    console.log(fmsg)
     if(fmsg.error){
         res.render('auth/login',{
-            loginStatus : fmsg.error
+            loginStatus : fmsg.error,
+            loginFail : true
         });
     }else{
         res.render('auth/login');

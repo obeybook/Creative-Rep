@@ -45,17 +45,24 @@ module.exports = function (app) {
                 if(err){
                     console.log(error);
                 }else{
-                    if(result.length === 0){
+                    console.log(username)
+                    if(username === '' || password === ''){
                         return done(null, false, {
-                            message : '존재하지 않는 아이디 입니다.'
+                            message : '아이디와 비밀번호를 입력하세요.'
                         })
-                    }else {
-                        if( !bcrypt.compareSync(password, result[0].password) ){
+                    }else{
+                        if(result.length === 0){
                             return done(null, false, {
-                                message : '비밀번호가 일치하지 않습니다.'
+                                message : '존재하지 않는 아이디 입니다.'
                             })
-                        }else{
-                            return done(null, result[0]);
+                        }else {
+                            if( !bcrypt.compareSync(password, result[0].password) ){
+                                return done(null, false, {
+                                    message : '비밀번호가 일치하지 않습니다.'
+                                })
+                            }else{
+                                return done(null, result[0]);
+                            }
                         }
                     }
                 }

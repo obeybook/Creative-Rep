@@ -29,7 +29,10 @@ html
                                         input(type='password' name="pw" class='form-custom' placeholder='Password')
                                 .row.login-fail-msg-box
                                     .col-12
-                                        .login-fail-msg #{loginStatus}
+                                        if loginFail
+                                            .login-fail-msg 
+                                                i.mdi.mdi-alert-circle-outline
+                                                | #{loginStatus}
                                 .row
                                     .col-12
                                         input(type='submit' class="button-point" value="Join!" style="width:100%")

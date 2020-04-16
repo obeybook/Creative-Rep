@@ -50,6 +50,7 @@ body{background: #f4f4f4;}
 
 .login-fail-msg-box{height:16px;}
 .login-fail-msg{ color: #ff2d74; font-size: 0.7rem;}
+.login-fail-msg .mdi-alert-circle-outline{font-size: 20px; vertical-align: middle; margin-right: 3px; line-height: 16px;}
 
 .register{text-align: right;}
 

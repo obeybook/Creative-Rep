@@ -128,7 +128,7 @@ router.delete('/works/:id' ,function(req, res){
 /* 수정 페이지 이동*/ 
 router.get('/works/update/:id' ,function(req, res){
     connection.query(`SELECT * FROM IMAGE_LIST WHERE _id=?`, [req.params.id], function(error, info){
-        if(error){
+        if(error){ 
             console.log(error)
         }else{
             if(req.isAuthenticated()){
