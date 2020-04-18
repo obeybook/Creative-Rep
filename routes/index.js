@@ -54,23 +54,38 @@ router.get('/', function(req, res, next) {
 /* 조회 */
 router.get('/works/:id',upload.single('userfile'), function(req, res, next){
     let file = req.file;
-    connection.query(`SELECT * FROM IMAGE_LIST WHERE _id=?`, [req.params.id], function(error, info){
+    connection.query(`SELECT * FROM IMAGE_LIST WHERE _id=?;`
+       ,[req.params.id], function(error, info){
         if(error){
             console.log(error)
         }else{
-            if(req.isAuthenticated()){
-                res.render('worksDetail', {
-                    detail: info,                     
-                    isAuthenticated : req.isAuthenticated(), 
-                    authInfo : req.user
-                });
-                console.log(file)
-            }else{
-                res.render('worksDetail', {
-                    detail: info
-                });
-            }
-            next();
+            connection.query(`
+                SELECT count(IMAGE_LIST._id) as cnt
+                FROM respect_info 
+                LEFT JOIN IMAGE_LIST
+                ON respect_info.article_id = IMAGE_LIST._id
+                WHERE respect_info.article_id = ?;
+            `
+            ,[req.params.id] ,function(error, rows){
+                if(error){
+                    console.log(error)
+                }else{
+                    if(req.isAuthenticated()){
+                        res.render('worksDetail', {
+                            detail: info,    
+                            respect :rows[0].cnt,                 
+                            isAuthenticated : req.isAuthenticated(), 
+                            authInfo : req.user
+                        });
+                    }else{
+                        res.render('worksDetail', {
+                            detail: info,
+                            respect :rows[0].cnt,        
+                        });
+                    }
+                    next();
+                }
+            })
         }
     });
 });

@@ -33,7 +33,7 @@
                             .respect-each
                                 .respect#respect
                                     i(class='mdi mdi-emoticon-lol-outline')
-                                    span#respectEach #{detail[0].respect}
+                                    span#respectEach #{respect}
                             .comment-each
                                 .comment
                                     i(class='mdi mdi-comment-outline')
@@ -89,7 +89,7 @@ script.
             $.ajax({
                 url : '/respect/' + detailId,
                 type : "POST",
-                //- data : { 'respect' : #{detail[0].respect} },
+                data : { 'detailId' : detailId },
                 success: function(data){
                     $('#respectEach').html(data)
                     $('#respect .mdi').removeClass('mdi-emoticon-lol-outline').addClass('mdi-emoticon-lol');
